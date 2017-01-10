@@ -1,4 +1,4 @@
-var collectionOk = '收藏成功！';
+﻿var collectionOk = '收藏成功！';
 var unCollectionOk = '取消收藏成功！';
 var collectionError = '操作失败！';
 
@@ -358,46 +358,69 @@ $(function(){
 	/*end #8578*/
 
 	/*=S 2017.1 redesign cec homepage, channel, article */
-	$.fn.freeScroll = function(opts){
-      var el = this;
-      if( ! el.length)return;
-      var startPosition, endPosition;
-      var SUPPORTS_TOUCH = 'ontouchstart' in window,
-          SUPPORTS_POINTER_IE10 = window.navigator.msPointerEnabled && !window.navigator.pointerEnabled && !SUPPORTS_TOUCH,
-          SUPPORTS_POINTER = (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && !SUPPORTS_TOUCH;
-      var useTouchEvents = (SUPPORTS_TOUCH || SUPPORTS_POINTER),
-          START_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown',
-          MOVE_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove',
-          END_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup',
-          LEAVE_EV = useTouchEvents ? (SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave', //manually detect leave on touch devices, so null event here
-          CANCEL_EV = (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
-      console.log(START_EV, MOVE_EV, END_EV, LEAVE_EV);
-      el[0].addEventListener(START_EV, function (e) {
-          var touch = e.touches[0];
-          startPosition = {
-              x: touch.pageX,
-              y: touch.pageY
-          }
-      });
-      el[0].addEventListener(MOVE_EV, function (e) {
-        var evt = e.originalEvent ? e.originalEvent : e;
-        var touch = evt.touches ? evt.touches[0] : evt;
-        endPosition = {x: touch.pageX,y: touch.pageY};
-        if(opts.move){
-          opts.move.call(el, event, endPosition.x - startPosition.x ,endPosition.y - startPosition.y);
-        }
-        e.preventDefault();
-      });
-      el[0].addEventListener(END_EV, function (e) {
-          if(opts.end){
-            opts.end.call(el, event, endPosition.x - startPosition.x ,endPosition.y - startPosition.y);
-          }
-      });
-      
-      return el;
-    }
     /* blue navigation horizontal scroll  */
     if($('#cecNav_list').length){
+		$.fn.freeScroll = function(opts){
+	      var el = this;
+	      if( ! el.length)return;
+	      var startPosition, endPosition, isMove = false;
+	      var SUPPORTS_TOUCH = 'ontouchstart' in window,
+	          SUPPORTS_POINTER_IE10 = window.navigator.msPointerEnabled && !window.navigator.pointerEnabled && !SUPPORTS_TOUCH,
+	          SUPPORTS_POINTER = false;//(window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && !SUPPORTS_TOUCH
+	      var useTouchEvents = (SUPPORTS_TOUCH || SUPPORTS_POINTER),
+	          START_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown',
+	          MOVE_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove',
+	          END_EV = useTouchEvents ? (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup',
+	          LEAVE_EV = useTouchEvents ? (SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave', //manually detect leave on touch devices, so null event here
+	          CANCEL_EV = (SUPPORTS_POINTER ? (SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
+	      console.log(START_EV, MOVE_EV, END_EV, LEAVE_EV);
+	      var startFunc = function(evt){
+	      	isMove = false;
+	      	var touch = evt.touches ? evt.touches[0] : evt;
+	        startPosition = {
+	            x: touch.pageX || touch.clientX,
+	            y: touch.pageY || touch.clientY
+	        }
+	      }, moveFunc = function(evt){
+	      	isMove = true;
+	      	var evt = evt.originalEvent ? evt.originalEvent : evt;
+	        var touch = evt.touches ? evt.touches[0] : evt;
+	        endPosition = {x: touch.pageX || touch.clientX, y : touch.pageY || touch.clientY};
+	        if(opts.move){
+	          opts.move.call(el, evt, endPosition.x - startPosition.x ,endPosition.y - startPosition.y);
+	        }
+	        evt.preventDefault();
+	      }, endFunc = function(evt){
+	      	if(isMove){
+	      		 evt.preventDefault();evt.stopPropagation();
+		      	if(opts.end){
+	             opts.end.call(el, evt, endPosition.x - startPosition.x ,endPosition.y - startPosition.y);
+	            }
+	            return false;
+	        }
+	      };
+	      if(useTouchEvents){
+		      el[0].addEventListener(START_EV, function (e){startFunc(e);});
+		      el[0].addEventListener(MOVE_EV, function (e){moveFunc(e);});
+		      el[0].addEventListener(END_EV, function (e){endFunc(e)});
+	      }/*else{
+	      	  el[0].addEventListener(START_EV, function (e) {
+		          e.preventDefault();e.stopPropagation();
+		          startFunc(e);
+			      el[0].addEventListener(MOVE_EV, moveFunc);
+			      el[0].addEventListener(END_EV, function (e) {
+			      	el[0].removeEventListener(MOVE_EV,moveFunc);
+			        endFunc(e)
+			      });
+			      el[0].addEventListener(LEAVE_EV, function (e) {
+			      	el[0].removeEventListener(MOVE_EV,moveFunc);
+			        return endFunc(e);
+			      });
+			      return false;
+		      });
+	      }*/
+	      return el;
+	    }
 	    $('#cecNav_list').on('init',function(){
 	      var el = $(this), totalW = 0;;
 	      el.children().each(function(no, child){
