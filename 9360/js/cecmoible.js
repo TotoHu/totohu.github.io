@@ -280,7 +280,7 @@ $(".deleteBtn").on("tap", function(e){
 
 /*start MR8934- infinite scroll*/
 if($('#scrollLoad').length > 0){
-	$("body,html,.wrap,.animateCon").css({"height":"auto !important","overflow":"auto !important"});
+	$("body,html,.wrap,.animateCon").css({"height":"auto !important","overflow":"visible !important"});
 	var counter = 0, numPerPage=10, limitPage = 10, scrollData =[];
 
 	var keywordValue = $('#keywordSpan').attr("value");
