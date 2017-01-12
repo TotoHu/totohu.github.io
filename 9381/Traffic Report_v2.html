@@ -46,6 +46,7 @@ table {
 	word-wrap: break-word;
 	border-collapse: collapse;
 	font-size: 28px;
+	margin: 13px 0 0;
 }
 
 .bordered td,.bordered th {
@@ -53,7 +54,7 @@ table {
 	border-top: 1px solid #ccc;
 	padding: 0px;
 	text-align: center;
-	padding: 8px 0;
+	padding: 7px 0;
 }
 
 .bordered th {
@@ -72,10 +73,10 @@ table {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
 
-.TR_head{font-family:Arial,Helvetica,sans-serif;font-size:28px;margin-bottom:8px;}
+.TR_head{font-family:Arial,Helvetica,sans-serif;font-size:28px;}
 .TR_head h1{font-size:28px;font-weight:normal;margin:0 0 5px;}
 .TR_head .logout{float:right;}
-.TR_time{color:red;font-size:28px;}
+.TR_time{color:red;}
 
 .columnHide{display:none;}
 .bgGray td{background-color:#f2f2f2;}
@@ -105,7 +106,6 @@ table {
 .columnHide{display:table-cell;}
 .TR_head{font-size:18px;}
 .TR_head h1{font-size:18px;}
-.TR_time{font-size:18px;}
 .TR_button_l{font-size:18px;}
 }
 
@@ -118,7 +118,6 @@ table {
 .columnHide{display:table-cell;}
 .TR_head{font-size:18px;}
 .TR_head h1{font-size:18px;}
-.TR_time{font-size:18px;}
 .TR_button_l{font-size:18px;}
 } 
 
@@ -131,15 +130,12 @@ table {
 <input type="hidden" name="method" value="showReport">
 <input type="hidden" name="phaseNum" value="" id="phaseNum">
 	<div class="TR_head">
-		<h1>FA (Oct 26-29)</h1>
-		<a href="javascript:void(0)" onclick="changePhaseNum('ELEC')">ELEC (Oct 11-14)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('GH')">GH (Oct 18-21)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('ME')">ME (Oct 18-21)</a>
+		<a>FA (Oct 26-29)</a><br/><a href="javascript:void(0)" onclick="changePhaseNum('ELEC')">ELEC (Oct 11-14)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('GH')">GH (Oct 18-21)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('ME')">ME (Oct 18-21)</a>
 
  		<a href="/logout.do?type=report" class="logout">Logout</a>
  	</div>
 	<div class="TR_time">Spring 2017</div>
 	<div class="TR_time">As of 2017-01-05 / 11:06 am</div>
-	
-	<h3></h3>
 	<!--=S Day 4 -->
 	<table class="bordered" border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -404,7 +400,6 @@ table {
 	</table>
 	<!--=E Day 4 -->
 	
-	<h3></h3>
 	<!--=S Day 3 -->
 	<table class="bordered" border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -669,7 +664,6 @@ table {
 	</table>
 	<!--=E Day 3 -->
 	
-	<h3></h3>
 	<!--=S Day 2 -->
 	<table class="bordered" border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -934,7 +928,6 @@ table {
 	</table>
 	<!--=E Day 2 -->
 	
-	<h3></h3>
 	<!--=S Day 1 -->
 	<table class="bordered" border="0" cellspacing="0" cellpadding="0">
 		<thead>
@@ -1198,8 +1191,6 @@ table {
 		</tbody>
 	</table>
 	<!--=E Day 1 -->
-
-	<h3></h3>
 
 </form>
 <script type="text/javascript">
