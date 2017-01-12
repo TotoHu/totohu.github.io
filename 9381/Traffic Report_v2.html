@@ -27,7 +27,7 @@
 <style>
 body {
   -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0;)
+  -webkit-tap-highlight-color: rgba(0,0,0,0;);
 }
 
 table {
@@ -59,7 +59,7 @@ table {
 	border-top: 1px solid #ccc;
 	padding: 0px;
 	text-align: center;
-	padding: 7px 0;
+	padding: 6px 0;
 }
 
 .bordered th {
@@ -81,7 +81,7 @@ table {
 .TR_head{font-family:Arial,Helvetica,sans-serif;font-size:28px;}
 .TR_head h1{font-size:28px;font-weight:normal;margin:0 0 5px;}
 .TR_head .logout{float:right;}
-.TR_time{color:red;}
+.TR_time{color:red;font-size:22px;}
 
 .columnHide{display:none;}
 .bgGray td{background-color:#f2f2f2;}
@@ -112,6 +112,7 @@ table {
 .TR_head{font-size:18px;}
 .TR_head h1{font-size:18px;}
 .TR_button_l{font-size:18px;}
+.TR_time{font-size:15px;}
 }
 
 @media only screen and (max-device-width:639px){
@@ -124,6 +125,7 @@ table {
 .TR_head{font-size:18px;}
 .TR_head h1{font-size:18px;}
 .TR_button_l{font-size:18px;}
+.TR_time{font-size:15px;}
 } 
 
 @media all and (max-width:639px) {
@@ -135,12 +137,11 @@ table {
 <input type="hidden" name="method" value="showReport">
 <input type="hidden" name="phaseNum" value="" id="phaseNum">
 	<div class="TR_head">
-		<a>FA (Oct 26-29)</a><br/><a href="javascript:void(0)" onclick="changePhaseNum('ELEC')">ELEC (Oct 11-14)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('GH')">GH (Oct 18-21)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('ME')">ME (Oct 18-21)</a>
+		<a>FA (Oct 26-29)</a>&nbsp;<span class="TR_time">Spring 2017, As of 2017-01-05 / 11:06 am</span><br/><a href="javascript:void(0)" onclick="changePhaseNum('ELEC')">ELEC (Oct 11-14)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('GH')">GH (Oct 18-21)</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="changePhaseNum('ME')">ME (Oct 18-21)</a>
 
  		<a href="/logout.do?type=report" class="logout">Logout</a>
  	</div>
-	<div class="TR_time">Spring 2017</div>
-	<div class="TR_time">As of 2017-01-05 / 11:06 am</div>
+	
 	<!--=S Day 4 -->
 	<table class="bordered" border="0" cellspacing="0" cellpadding="0">
 		<thead>
