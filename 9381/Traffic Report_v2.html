@@ -45,15 +45,7 @@ table {
 	table-layout: fixed;
 	word-wrap: break-word;
 	border-collapse: collapse;
-}
-
-.bordered tr:hover {
-	background: #fbf8e9;
-	-o-transition: all 0.1s ease-in-out;
-	-webkit-transition: all 0.1s ease-in-out;
-	-moz-transition: all 0.1s ease-in-out;
-	-ms-transition: all 0.1s ease-in-out;
-	transition: all 0.1s ease-in-out;
+	font-size: 28px;
 }
 
 .bordered td,.bordered th {
@@ -61,7 +53,6 @@ table {
 	border-top: 1px solid #ccc;
 	padding: 0px;
 	text-align: center;
-	font-size: 28px;
 	padding: 8px 0;
 }
 
@@ -83,7 +74,7 @@ table {
 
 .TR_head{font-family:Arial,Helvetica,sans-serif;font-size:28px;margin-bottom:8px;}
 .TR_head h1{font-size:28px;font-weight:normal;margin:0 0 5px;}
-.TR_head .logout{float:right;font-size:28px;}
+.TR_head .logout{float:right;}
 .TR_time{color:red;font-size:28px;}
 
 .columnHide{display:none;}
@@ -103,19 +94,19 @@ table {
 .levelThree .levelThreeindent{padding-left:30px;}
 
 .TR_button, .TR_button:visited{background-color:#008;box-shadow:inset 0px 10px 10px #66a;border-radius:4px;padding:4px 8px;min-height:16px;color:#fff!important;border:none;font-size:12px;font-weight:700;display:inline-block;vertical-align:middle;cursor:pointer; text-align:center;-webkit-appearance:none;text-decoration:none;}
-.TR_button_l{padding:10px 20px;font-size:16px;}
+.TR_button_l{padding:10px 20px;font-size:28px;}
 
 @media all and (orientation:portrait) {
 .columnHide{display:table-cell;}
 } 
 
 @media only screen and (min-device-width:640px){
+.bordered{font-size:18px;}
 .columnHide{display:table-cell;}
 .TR_head{font-size:18px;}
 .TR_head h1{font-size:18px;}
-.TR_head .logout{font-size:18px;}
 .TR_time{font-size:18px;}
-.bordered td, .bordered th{font-size:18px;}
+.TR_button_l{font-size:18px;}
 }
 
 @media only screen and (max-device-width:639px){
@@ -123,7 +114,12 @@ table {
 }
 
 @media all and (orientation:landscape) {
+.bordered{font-size:18px;}
 .columnHide{display:table-cell;}
+.TR_head{font-size:18px;}
+.TR_head h1{font-size:18px;}
+.TR_time{font-size:18px;}
+.TR_button_l{font-size:18px;}
 } 
 
 @media all and (max-width:639px) {
@@ -394,15 +390,15 @@ table {
 				<td class="columnHide">1234</td>
 				<td class="columnHide">1234</td>
 			</tr>
-			<tr>
-				<td class="tl">Total</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
+			<tr class="bgGray">
+				<td class="dayNum tl">Total</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
 			</tr>
 		</tbody>
 	</table>
@@ -659,15 +655,15 @@ table {
 				<td class="columnHide">1234</td>
 				<td class="columnHide">1234</td>
 			</tr>
-			<tr>
-				<td class="tl">Total</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
+			<tr class="bgGray">
+				<td class="dayNum tl">Total</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
 			</tr>
 		</tbody>
 	</table>
@@ -924,15 +920,15 @@ table {
 				<td class="columnHide">1234</td>
 				<td class="columnHide">1234</td>
 			</tr>
-			<tr>
-				<td class="tl">Total</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
+			<tr class="bgGray">
+				<td class="dayNum tl">Total</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
 			</tr>
 		</tbody>
 	</table>
@@ -1189,15 +1185,15 @@ table {
 				<td class="columnHide">1234</td>
 				<td class="columnHide">1234</td>
 			</tr>
-			<tr>
-				<td class="tl">Total</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td>1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
-				<td class="columnHide">1234</td>
+			<tr class="bgGray">
+				<td class="dayNum tl">Total</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
+				<td class="bold columnHide">1234</td>
 			</tr>
 		</tbody>
 	</table>
