@@ -1,4 +1,4 @@
-var collectionOk = '收藏成功！';
+﻿var collectionOk = '收藏成功！';
 var unCollectionOk = '取消收藏成功！';
 var collectionError = '操作失败！';
 
@@ -400,6 +400,7 @@ $(function(){
       	}
       }
       var objH = setT? setT : el.offset().top;
+	  alert(el.attr('class')+'\n setValue: '+ setT+'\n calculate Value: '+ el.offset().top);
       win.on('scroll',function(){
         if( win.scrollTop() > objH){
           el.addClass(cls)
