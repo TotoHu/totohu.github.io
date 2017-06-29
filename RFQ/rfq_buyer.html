@@ -3721,7 +3721,7 @@ RFQ Detail
                 var ua = navigator.userAgent.toLowerCase();
                 var str= ua.match(/cpu iphone os (\d+)\_(\d+) like/);
                 var ver=str? str[1].replace(/_/g,".") : 0;
-                var isPhoneLow = ua.indexOf('iPhone') > -1 && (ver && ver>=8){
+                var isPhoneLow = ua.indexOf('iPhone') > -1 && (ver && ver<=8){
                   var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
                   self.css({'position':'absolute','top':'0px'});
                   var setPos = function(direct){
