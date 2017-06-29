@@ -4421,6 +4421,7 @@ RFQ Detail
 
             /* following scripts for bottom app banner div.app-promotion-banner (in iPhone the css which keep it floating at bottom not work due to MC body css, so add js to fix) */
             $('#app-promotion-banner').on('fixPosition', function(){
+                alert(navigator.userAgent.indexOf('iPhone'));
                 if (navigator.userAgent.indexOf('iPhone') > -1){
                   var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
                   self.css({'position':'absolute','top':'0px'});
