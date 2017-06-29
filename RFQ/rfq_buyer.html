@@ -36,7 +36,7 @@
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
         <![endif]-->
         <!--[if !IE]> -->
-        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.min.js"></script>
         <!-- <![endif]-->
 
         <!--[if lte IE 8]>
@@ -1267,190 +1267,7 @@ All JS code on an HTML file are just for demonstration only
 <div id="id-content-3"></div><!--/#id-content-3-->
 <div id="id-content-4"></div><!--/#id-content-4-->
 
-<link rel="stylesheet" href="css/chosen.css">
-<script src="assets/js/chosen.jquery.min.js"></script>
-
-<!--
-The following JS code should not be copied over
-All JS code on an HTML file are just for demonstration only
--->
-<script>
-    /**
-     * Sample data for Traverser
-     */
-    var num_rfi = 3, curr_rfi = 1;
-    var num_rfi_per_thread = 4, curr_rfi_thread = 1;
-
-    jQuery(function($) {
-
-        /**
-         * Textbox search
-         */
-        $('#search').focus(function() {
-            if($(this).val() == '') {
-                $(this).animate({width: 320}, 'slow', function() { $(this).removeClass('gs-search-default').addClass('gs-search-active'); });
-            }
-        }).blur(function() {
-            if($(this).val() == '') {
-                $(this).animate({width: 170}, 'slow', function() { $(this).removeClass('gs-search-active').addClass('gs-search-default'); });
-            }
-        });
-
-        $('.chosen-select-single').chosen({disable_search_threshold: 10});
-        var cr = $('.gs-page-selector').find('.chosen-results');
-        var cs = $('.gs-page-selector').find('.chosen-search');
-        $(cr).after($(cs));
-
-        /**
-         * On page load, load the message items
-         */
-        $.get('rfq_buyer_list_items.html?_='+new Date().getTime(), function(data) {
-            if(data != "") {
-                $('#id-content-1').find('#id-message-list').html(data);
-            }
-        });
-
-        /**
-         * Binding change of the Select All checkbox
-         */
-        $('#id-content-1').find('#id-select-all').change(function(e) {
-            $(this).removeClass('half');
-            if($(this).is(':checked')) {
-                $(this).parent().parent().addClass('active');
-                $('#id-content-1').find('.message-item').find('input:checkbox').prop('checked', true).parent().parent().parent().addClass('active');
-            } else {
-                $(this).parent().parent().removeClass('active');
-                $('#id-content-1').find('.message-item').find('input:checkbox').prop('checked', false).parent().parent().parent().removeClass('active');
-            }
-        });
-
-        /**
-         * On dropdown open...
-         * Prevent the dropdown to auto-close when clicked inside
-         **/
-        $('.gs-dropdown-menu').click(function(e) {
-            e.stopPropagation();
-        });
-
-        /**
-         * Binding click of the Filter's Reset button
-         */
-        $('#id-content-1').find('.gs-filter-reset').click(function(e) {
-            e.preventDefault();
-            $('#id-content-1').find('.gs-filter-clear').hide();
-            $('#id-content-1').find('.gs-messages-tools-filters-multi').find('a.btn').children('span').html('Filter(s)');
-            $('#id-content-1').find('.gs-ck-filter').prop('checked', false);
-            return false;
-        });
-
-        /**
-         * Binding click of the Filter's Apply button
-         */
-        $('#id-content-1').find('.gs-filter-apply').click(function(e) {
-            e.preventDefault();
-            var ck = $('#id-content-1').find('.gs-ck-filter:checked').length;
-            if(ck > 0) {
-                $('#id-content-1').find('.gs-filter-clear').css('display', 'inline-block');
-                $('#id-content-1').find('.gs-messages-tools-filters-multi').find('.btn:first-child').children('span').html((ck + ' filter' + (ck > 1 ? 's' : '') + ' selected'));
-            } else {
-                $('#id-content-1').find('.gs-filter-clear').hide();
-                $('#id-content-1').find('.gs-messages-tools-filters-multi').find('.btn:first-child').children('span').html('Filter(s)');
-            }
-            $('#id-content-1').find('.gs-messages-tools-filters-multi').removeClass('open');
-            return false;
-        });
-
-        /**
-         * Binding click of the Filter's Clear link
-         */
-        $('#id-content-1').find('.gs-filter-clear').click(function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            $('#id-content-1').find('.gs-filter-clear').hide();
-            $('#id-content-1').find('.gs-messages-tools-filters-multi').find('.btn:first-child').children('span').html('Filter(s)');
-            $('#id-content-1').find('.gs-ck-filter').prop('checked', false);
-            return false;
-        });
-
-        /**
-         * Simulate pagination
-         *
-         * Sample data:
-         * Total RFIs = 30
-         * RFIs per page = 10
-         *
-         * This is just to simulate the pagination. You can implement this differently.
-         * All you need from the code below are
-         * - Binding of the click event to the pagination's buttons
-         * - Calling of the page through AJAX
-         * - Resetting of the "Select All" checkbox
-         *
-         * The changing of the pagination's label and the states of its buttons are dependent on the way you reti
-         */
-        var num_rfi_total = 30, num_rfi_page = 10;
-        var curr_page = parseInt($('#id-content-1').find('.pagination').attr('data-page-no'));
-        $('#id-content-1').find('.gs-page-label > span').html(curr_page + ' - ' + num_rfi_page + ' of ' + num_rfi_total);
-        $('#id-content-1').find('.pagination > li > button').click(function(e) {
-            e.preventDefault();
-
-            var btn = $(this);
-            var nav = btn.attr('data-page-nav');
-
-            if(!btn.hasClass('disabled')) {
-
-                if(nav == 'prev') {
-                    curr_page = curr_page - 1;
-                } else {
-                    curr_page = curr_page + 1;
-                }
-
-                $('#id-content-1').find('.gs-page-spinner').removeClass('hidden');
-
-                //Let's use timeout to simulate request turnaround
-                setTimeout(function(){
-
-                    $.get('rfq_buyer_list_items.html?_='+new Date().getTime(), function(data) {
-                        if(data != "") {
-                            $('#id-content-1').find('#id-message-list').html(data);
-                        }
-                    }).done(function() {
-
-                        //Reset Select All checkbox
-                        $('#id-content-1').find('#id-select-all').removeClass('half').prop('checked', false);
-                        $('#id-content-1').find('#id-select-all').parent().parent().removeClass('active');
-
-                        //Set the pagination label and the states of the navigation buttons
-                        $('#id-content-1').find('.gs-page-label > span').html( ((num_rfi_page * (curr_page-1)) + 1) + ' - ' + (num_rfi_page * curr_page) + ' of ' + num_rfi_total);
-
-                        $('#id-content-1').find('.pagination').attr('data-page-no', curr_page);
-                        $('#id-content-1').find('.gs-page-spinner').addClass('hidden');
-
-                        if(curr_page == 1) {
-                            $('#id-content-1').find('button[data-page-nav="prev"]').addClass('disabled');
-                            $('#id-content-1').find('button[data-page-nav="next"]').removeClass('disabled');
-                        } else if(curr_page >= (num_rfi_total/num_rfi_page)) {
-                            $('#id-content-1').find('button[data-page-nav="prev"]').removeClass('disabled');
-                            $('#id-content-1').find('button[data-page-nav="next"]').addClass('disabled');
-                        } else {
-                            $('#id-content-1').find('button[data-page-nav="prev"]').removeClass('disabled');
-                            $('#id-content-1').find('button[data-page-nav="next"]').removeClass('disabled');
-                        }
-
-                    });
-
-                }, 2000);
-            }
-
-            return false;
-        });
-
-        /**
-         * Initialize page after loading...
-         */
-        fn_init();
-
-    });
-</script></div><!--/.gs-container-main-->
+</div><!--/.gs-container-main-->
 
     <div class="gs-overlay" style="min-height: 805px;">
     </div><!--/.gs-overlay-->
@@ -1461,34 +1278,7 @@ All JS code on an HTML file are just for demonstration only
 The following JS code should not be copied over
 All JS code on an HTML file are just for demonstration only
 -->
-<script>
-    jQuery(function($) {
-
-        /**
-         * On page load, load the Menu
-         */
-        $.get('rfq_buyer_menu.html?_='+new Date().getTime(), function(data) {
-            if(data != "") {
-                $('.gs-container-menu').html(data);
-            }
-        });
-
-        /**
-         * On page load, load the Message List
-         */
-        $.get('rfq_buyer_list.html?_='+new Date().getTime(), function(data) {
-            if(data != "") {
-                $('.gs-container-main').html(data);
-            }
-        });
-
-        /**
-         * Initialize page after loading...
-         */
-        fn_init();
-
-    });
-</script></div><!--/#id-content-->
+</div><!--/#id-content-->
 
             <!-- /MAIN CONTENT -->
 
@@ -3080,264 +2870,8 @@ Sample Multi-Thread Screen
 
         </div><!--/.gs-detail-view-category-->
     </div>
-</div><link rel="stylesheet" href="css/bootstrap-tour.css">
-<script src="assets/js/bootstrap-tour.js"></script>
-
-<script type="text/javascript">
-    /**
-     * On page load, load the dialogs
-     */
-    $.get('samples_buyer.html?_='+new Date().getTime(), function(data) {
-        if(data != "") {
-            $('.container').after(data);
-        }
-    });
-
-    function fn_setStep(mode, step_num) {
-        $('.gs-tour-page').html(step_num + '/' + tour_buyer_num);
-    }
-    function fn_resetScreens() {
-        $('.gs-container-main > #id-content-3').hide();
-        $('.gs-container-main > #id-content-2').hide();
-        $('.gs-container-main > #id-content-1').show();
-    }
-    var tour_buyer, tour_buyer_num = 5;
-    jQuery(function($) {
-
-        var osteps_buyer = [
-            {
-                element: "#id-sample-message-list",
-                placement: "bottom",
-                content: "<div class='align-center gs-tour-size-500'>\n\
-                             <h1>With MessageCenter, you can handle<br/>two types of requests:</h1>\n\
-                             <div class='space-20'></div>\n\
-                             <div class='gs-tour-content-justified'>\n\
-                                <ol>\n\
-                                <li>Inquiries / Request for Information (RFI) - ask several suppliers for information on different products/categories.<br/><br/></li>\n\
-                                <li>Buying Request - ask for detailed quotations and receive up to 10 quotes from various suppliers.</li>\n\
-                                </ol>\n\
-                             </div>\n\
-                         </div>",
-                template: "<div class='popover tour-tour'>"+
-                            "<div class='arrow'></div>"+
-                            "<h3 class='popover-title'></h3>"+
-                            "<div class='popover-content'></div>"+
-                            "<div class='popover-navigation'>"+
-                                "<div class='btn-group'>"+
-                                "<button class='btn' data-role='next'>Next <i class='ace-icon fa fa-chevron-circle-right white'></i></button>"+
-                                "</div>"+
-                                "<button class='btn' data-role='end'>End</button>"+
-                                "<span class='gs-tour-page pull-right'></span>"+
-                            "</div>"+
-                        "</div>",
-                onShown: function(tour) {
-                    fn_setStep('buyer', 1);
-                }
-            },
-            {
-                element: "#id-sample-menu-main",
-                content: "<div class='align-center gs-tour-size-500'>\n\
-                             <h1>You can manage Inquiries and Buying Request<br/>quickly &amp; easily:</h1>\n\
-                             <div class='space-20'></div>\n\
-                             <div class='gs-tour-content-justified'>\n\
-                                <ol>\n\
-                                <li>Messages stored under different tabs/categories - All, Buying Requests, Inquiries.<br/><br/></li>\n\
-                                <li>Simply click on the one you want to check.</li>\n\
-                                </ol>\n\
-                             </div>\n\
-                         </div>",
-                onShown: function(tour) {
-                    fn_setStep('buyer', 2);
-                }
-            },
-            {
-                element: "#id-message-viewer",
-                placement: "top",
-                content: "<div class='align-center gs-tour-size-500'>\n\
-                             <h2>Know Your Inquiries at a Glance:</h2>\n\
-                             <div class='space-20'></div>\n\
-                             <div class='gs-tour-content-justified'>\n\
-                                <ol>\n\
-                                <li>Responses - messages received from all suppliers in response to your inquiry.<br/><br/></li>\n\
-                                <li>Suppliers - list of suppliers to whom you sent inquiries.</li>\n\
-                                </ol>\n\
-                             </div>\n\
-                          </div>",
-                onShow: function(tour) {
-                    $('#id-sample-buyer-rfi-detail').removeClass('hidden');
-                    $('#id-sample-buyer-rfq-detail').addClass('hidden');
-                    $('.sample-gs-message-detail-tabs').addClass('tour-step-backdrop').addClass('tour-tour-element');
-                    fn_transit(1, 2);
-                },
-                onShown: function(tour) {
-                    fn_setStep('buyer', 3);
-                },
-                onHide: function(tour) {
-                    $('.sample-gs-message-detail-tabs').removeClass('tour-step-backdrop').removeClass('tour-tour-element');
-                },
-                onPrev: function(tour) {
-                    fn_transit(2, 1);
-                }
-            },
-            {
-                element: "#id-sample-quote-viewer-detail",
-                placement: "top",
-                content: "<div class='align-center gs-tour-size-500'>\n\
-                             <h2>Buying Request key features:</h2>\n\
-                             <div class='space-20'></div>\n\
-                             <div class='gs-tour-content-justified'>\n\
-                                <ol>\n\
-                                <li>Quotes Received - list of all quotes received; makes it easy to compare.<br/><br/></li>\n\
-                                <li>Quote Details - all messages to &amp; from specific suppliers, and all other information related to those suppliers.</li>\n\
-                                </ol>\n\
-                             </div>\n\
-                          </div>",
-                onShow: function(tour) {
-                    $('#id-sample-buyer-rfq-detail').removeClass('hidden');
-                    $('#id-sample-buyer-rfi-detail').addClass('hidden');
-                    $('#id-sample-quotes-received-header').addClass('tour-step-backdrop').addClass('tour-tour-element');
-                },
-                onShown: function(tour) {
-                    fn_setStep('buyer', 4);
-                },
-                onHide: function(tour) {
-                    $('#id-sample-quotes-received-header').removeClass('tour-step-backdrop').removeClass('tour-tour-element');
-                }
-            },
-            {
-                element: "#id-sample-quotation-button",
-                placement: "right",
-                content: "<div class='align-center gs-tour-size-400'>\n\
-                             <h2>Get Quotations<br/>- an exclusive service only for<br/>our Trade Show visitors:</h2>\n\
-                             <div class='space-20'></div>\n\
-                             <div class='gs-tour-content-justified'>\n\
-                                Detailed specifications in the Buying Request put your sourcing process on the fast-track - suppliers can respond quickly &amp; directly to you.\n\
-                             </div>\n\
-                          </div>",
-                template: "<div class='popover tour-tour'>"+
-                            "<div class='arrow'></div>"+
-                            "<h3 class='popover-title'></h3>"+
-                            "<div class='popover-content'></div>"+
-                            "<div class='popover-navigation'>"+
-                                "<div class='btn-group'>"+
-                                    "<button class='btn btn-sm btn-info' data-role='prev'><i class='ace-icon fa fa-chevron-circle-left white'></i> Prev</button>"+
-                                "</div>"+
-                                "<button class='btn btn-sm btn-default' data-role='end'>Finish</button>"+
-                                "<span class='gs-tour-page pull-right'></span>"+
-                            "</div>"+
-                        "</div>",
-                onShown: function(tour) {
-                    fn_setStep('buyer', 5);
-                }
-            }
-        ];
-
-        tour_buyer = new Tour({
-            steps: osteps_buyer,
-            orphan: true,
-            storage: false,
-            backdrop: true,
-            template: "<div class='popover tour-tour'>"+
-                        "<div class='arrow'></div>"+
-                        "<h3 class='popover-title'></h3>"+
-                        "<div class='popover-content'></div>"+
-                        "<div class='popover-navigation'>"+
-                            "<div class='btn-group'>"+
-                                "<button class='btn' data-role='prev'><i class='ace-icon fa fa-chevron-circle-left white'></i> Prev</button>"+
-                                "<button class='btn' data-role='next'>Next <i class='ace-icon fa fa-chevron-circle-right white'></i></button>"+
-                            "</div>"+
-                            "<button class='btn' data-role='end'>End</button>"+
-                            "<span class='gs-tour-page pull-right'></span>"+
-                        "</div>"+
-                    "</div>",
-            onStart: function(tour) {
-                fn_resetScreens();
-
-                //Hide header's tabs and user access menu
-                $('#id-header > .gs-user-tabs').hide();
-                $('#id-header > .gs-user-tools').hide();
-
-                //Show temporary header's tabs and user access menu
-                $('#id-header > .global-sources').after($('#id-sample-buyer-header').html());
-                $('#id-header > .clearfix').before($('#id-sample-buyer-user').html());
-
-                //Hide menu
-                $('.gs-container-menu > .gs-messages-menu').hide();
-                //Show temporary menu
-                $('.gs-container-menu').append($('#id-sample-buyer-menu').html());
-
-                //Hide message tools on screen 1
-                $('#id-content-1').find('#id-messages-tools').hide();
-                //Show temporary message tools on screen 1
-                $('#id-content-1').find('.messages-container').prepend($('#id-sample-buyer-list-tools').html());
-
-                //Hide RFI list on screen 1
-                $('#id-content-1').find('.message-list-container > .message-list').hide();
-                //Show temporary RFI item on screen 1
-                $('#id-content-1').find('.message-list-container').prepend($('#id-sample-buyer-rfi-list').html());
-
-                //Hide pagination on screen 1
-                $('.gs-page-label').removeClass('inline').hide();
-                $('.pagination').hide();
-
-                //Hide content of screen 2
-                $('#id-content-2 > div').hide();
-                $('#id-content-2').prepend($('#id-sample-buyer-multi-thread').html());
-
-                //Hide content of screen 3
-                $('#id-content-3 > div').hide();
-                $('#id-content-3').prepend($('#id-sample-buyer-thread').html());
-
-                //Then, add a class to identify all the elements we have added
-                $('#id-header').find('.gs-sample').addClass('gs-sample-used');
-                $('.gs-container-menu').find('.gs-sample').addClass('gs-sample-used');
-                $('#id-content-1').find('.gs-sample').addClass('gs-sample-used');
-                $('#id-content-2').find('.gs-sample').addClass('gs-sample-used');
-                $('#id-content-3').find('.gs-sample').addClass('gs-sample-used');
-            },
-            onEnd: function(tour) {
-                //Remove temporary elements
-                $('.gs-sample-used').remove();
-
-                //Show header's tabs and user access menu
-                $('#id-header > .gs-user-tabs').show();
-                $('#id-header > .gs-user-tools').show();
-
-                //Show menu
-                $('.gs-container-menu > .gs-messages-menu').show();
-
-                //Show message tools on screen 1
-                $('#id-content-1').find('#id-messages-tools').show();
-
-                //Show RFI list on screen 1
-                $('#id-content-1').find('.message-list-container > .message-list').show();
-
-                //Show pagination on screen 1
-                $('.gs-page-label').addClass('inline');
-                $('.pagination').show();
-
-                //Show content of screen 2 and 3
-                $('#id-content-2 > div').show();
-                $('#id-content-3 > div').show();
-
-                fn_resetScreens();
-            }
-        });
-
-        // Initialize the tour
-        tour_buyer.init();
-
-        /**
-         * On click of Help Tour option, activate the splash
-         * Change the implementation accordingly
-         */
-        $('.gs-tour').click(function(e) {
-            e.preventDefault();
-            fn_showContent();
-            tour_buyer.restart();
-        });
-    });
-</script><!--
+</div>
+<!--
 Create Tag
 -->
 <div id="id-dlg-create-tag" class="hidden">
@@ -4372,11 +3906,7 @@ RFQ Detail
     <script src="assets/js/bootbox.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 
-    <!-- ace scripts -->
-    <script src="assets/js/ace.min.js"></script>
 
-    <!-- scripts for global sources -->
-    <script src="assets/js/gs.js"></script>
 
     <!--
     The following JS code should not be copied over
@@ -4384,10 +3914,29 @@ RFQ Detail
     -->
     <script>
         jQuery(function($) {
-            /**
-             * Initialize page after loading...
-             */
-            fn_init();
+             /* following scripts for bottom app banner div.app-promotion-banner (in iPhone the css which keep it floating at bottom not work due to MC body css, so add js to fix) */
+            $('#app-promotion-banner').on('fixPosition', function(){
+                alert(navigator.userAgent.indexOf('iPhone'));
+                if (navigator.userAgent.indexOf('iPhone') > -1){
+                  var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
+                  self.css({'position':'absolute','top':'0px'});
+                  var setPos = function(direct){
+                    var t = win.scrollTop()+winh-selfh+'';
+                    var l =win.scrollLeft();
+                    self.css({'opacity':'1','left':l+'px','top':t+'px'});
+                  };
+                  setPos();
+                  $(window).on('scroll',function(){
+                    self.css('display', 'none')
+                  })
+                  $(window).on('resize orientationchange',function(){
+                    winh=win.outerHeight();
+                    setPos();
+                  })
+                }
+            }).trigger('fixPosition');
+            /* /bottom app banner */
+            
 
             /**
              * The following scripts are for the Survey, but these could be hidden along with other scripts for Survey
@@ -4419,28 +3968,7 @@ RFQ Detail
                         });
             }, 90000);
 
-            /* following scripts for bottom app banner div.app-promotion-banner (in iPhone the css which keep it floating at bottom not work due to MC body css, so add js to fix) */
-            $('#app-promotion-banner').on('fixPosition', function(){
-                alert(navigator.userAgent.indexOf('iPhone'));
-                if (navigator.userAgent.indexOf('iPhone') > -1){
-                  var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
-                  self.css({'position':'absolute','top':'0px'});
-                  var setPos = function(direct){
-                    var t = win.scrollTop()+winh-selfh+'';
-                    var l =win.scrollLeft();
-                    self.css({'opacity':'1','left':l+'px','top':t+'px'});
-                  };
-                  setPos();
-                  $(window).on('scroll',function(){
-                    self.css('display', 'none')
-                  })
-                  $(window).on('resize orientationchange',function(){
-                    winh=win.outerHeight();
-                    setPos();
-                  })
-                }
-            }).trigger('fixPosition');
-            /* /bottom app banner */
+           
 
         });
 
