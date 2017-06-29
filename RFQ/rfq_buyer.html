@@ -4342,11 +4342,21 @@ RFQ Detail
             }
         </style>
         <!-- SURVEY : END -->
-
+<style type="text/css">
+.app-proBanner {background: #ffe699;padding: 7px 0;box-sizing: border-box;width: 100%;min-height: 70px;position:fixed;bottom: 0;left:0;z-index: 9999;display: table;}
+.app-imgBox {display: table-cell;width: 76px;text-align: center;}
+.app-content {padding: 0 25px 0 0;display: table-cell;vertical-align: middle;}
+.app-txt {color:#843c0c;font-size: 14px;font-weight: 700;line-height: 18px;float: left;margin-right: 10px;margin-bottom: 2px;}
+.app-btn {text-align: left;}
+.app-btn a {display: inline-block;padding: 1px 12px;border-radius: 5px;background: #ffc000;color: #000;font-size: 14px;font-weight: 700;}
+.app-close {position: absolute;right: 0;top: 0;width: 25px;height: 25px;line-height: 25px;font-size: 14px;font-weight: 700;text-align: center;color: #999;cursor: pointer;}
+.app-close:hover {color:#999;}
+.app-proBanner:target {display: none;}
+</style>
         <!--=S app promotion banner -->
         <div class="app-proBanner" id="app-promotion-banner">
             <div class="app-imgBox">
-                <img class="app-img" src="assets/images/gs-banner-app.png" alt="globalsources" width="56" height="56">
+                <img class="app-img" src="http://s.globalsources.com/ST/i/GSOL-MOBILE-APPS-LOGO.PNG" alt="globalsources" width="56" height="56">
             </div>
             <div class="app-content">
                 <p class="app-txt">Install Globalsources.com app now to view and track your buying requests easily</p>
@@ -4374,69 +4384,6 @@ RFQ Detail
     -->
     <script>
         jQuery(function($) {
-
-            /**
-             * On page load, load the default content of supplier page
-             */
-            $.get('rfq_buyer_manager.html?_='+new Date().getTime(), function(data) {
-                if(data != "") {
-                    $('#id-content').html(data);
-                }
-            });
-
-            /**
-             * On page load, load the dialogs
-             */
-            $.get('dialogs.html?_='+new Date().getTime(), function(data) {
-                if(data != "") {
-                    $('.container').after(data);
-                }
-            });
-
-            /**
-             * On page load, load the tour
-             */
-            $.get('tour_buyer.html?_='+new Date().getTime(), function(data) {
-                if(data != "") {
-                    $('.container').after(data);
-                }
-            });
-
-            /**
-             * On click of a particular tab, load its content
-             * Change the implementation accordingly
-             */
-            $('.gs-user-tabs').find('a[target!="_blank"]').click(function(e) {
-                e.preventDefault();
-                switch($(this).attr('data-tab')) {
-                    case '1':
-                        $.get('rfq_buyer_manager.html?_='+new Date().getTime(), function(data) {
-                            if(data != "") {
-                                $('#id-content').html(data);
-                            }
-                        });
-                        break;
-                    case '2':
-                        $('#id-content').html("Content of Tab 2");
-                        break;
-                }
-                $('.gs-user-tabs').find('li.active').removeClass('active');
-                $(this).parent('li').addClass('active');
-                return false;
-            });
-
-            /**
-             * On click of Template Settings, load the Template Settings page
-             */
-            $('.gs-template-settings').click(function(e) {
-                e.preventDefault();
-                $.get('settings_template.html?_='+new Date().getTime(), function(data) {
-                    if(data != "") {
-                        $('.gs-container-main').html(data);
-                    }
-                });
-            });
-
             /**
              * Initialize page after loading...
              */
@@ -4513,28 +4460,6 @@ RFQ Detail
                         });
             });
 
-            /**
-             * On click of any of the quote items, load the detail page
-             */
-            $('.quotes-list.quotes-rows').find('.quote-detail').unbind('click').click(function(e) {
-                $('.gs-container-main > #id-content-3').html(processing).show();
-                $.get('rfq_buyer_quotes_detail.html?_='+new Date().getTime(), function(data) {
-                    if(data != "") {
-                        $('.gs-container-main > #id-content-3').html(data);
-                    }
-                });
-                fn_transit(2, 3);
-            });
-
-            $('.quotes-list.quotes-thumbs').find('.quote-item').unbind('click').click(function(e) {
-                $('.gs-container-main > #id-content-3').html(processing).show();
-                $.get('rfq_buyer_quotes_detail.html?_='+new Date().getTime(), function(data) {
-                    if(data != "") {
-                        $('.gs-container-main > #id-content-3').html(data);
-                    }
-                });
-                fn_transit(2, 3);
-            });
         }
     </script>
 
@@ -4543,50 +4468,5 @@ RFQ Detail
 
     </body>
 
-    <!-- other scripts -->
-    <script src="assets/js/bootbox.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- ace scripts -->
-    <script src="assets/js/ace.min.js"></script>
-
-    <!-- scripts for global sources -->
-    <script src="assets/js/gs.js"></script>
-
-    <!--
-    The following JS code should not be copied over
-    All JS code on an HTML file are just for demonstration only
-    -->
-    <script>
-        jQuery(function($) {
-
-           
-
-            /* following scripts for bottom app banner div.app-promotion-banner (in iPhone the css which keep it floating at bottom not work due to MC body css, so add js to fix) */
-            $('#app-promotion-banner').on('fixPosition', function(){
-                if (navigator.userAgent.indexOf('iPhone') > -1){
-                  var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
-                  self.css({'position':'absolute','top':'0px'});
-                  var setPos = function(direct){
-                    var t = win.scrollTop()+winh-selfh+'';
-                    var l =win.scrollLeft();
-                    self.css({'opacity':'1','left':l+'px','top':t+'px'});
-                  };
-                  setPos();
-                  $(window).on('scroll',function(){
-                    self.css('display', 'none')
-                  })
-                  $(window).on('resize orientationchange',function(){
-                    winh=win.outerHeight();
-                    setPos();
-                  })
-                }
-            }).trigger('fixPosition');
-            /* /bottom app banner */
-
-        });
-
-        }
-    </script>
 
 </html>
