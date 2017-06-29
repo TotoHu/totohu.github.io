@@ -3718,8 +3718,10 @@ RFQ Detail
         jQuery(function($) {
              /* following scripts for bottom app banner div.app-promotion-banner (in iPhone the css which keep it floating at bottom not work due to MC body css, so add js to fix) */
             $('#app-promotion-banner').on('fixPosition', function(){
-                alert(navigator.userAgent.indexOf('iPhone'));
-                if (navigator.userAgent.indexOf('iPhone') > -1){
+                var ua = navigator.userAgent.toLowerCase();
+                var str= ua.match(/cpu iphone os (\d+)\_(\d+) like/);
+                var ver=str? str[1].replace(/_/g,".") : 0;
+                var isPhoneLow = ua.indexOf('iPhone') > -1 && (ver && ver>=8){
                   var self = $(this), win = $(window), selfh = self.outerHeight(),winh=win.outerHeight();
                   self.css({'position':'absolute','top':'0px'});
                   var setPos = function(direct){
