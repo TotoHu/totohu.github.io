@@ -1,0 +1,1000 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Global Sources Mobile Apps</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="description" content="Global Sources Mobile Apps" />
+<meta name="WT.cg_n" content="Global Sources Mobile Apps Landing Pg">
+<meta name="keywords" content="" />
+<code id="redirectToMobile"></code><code id="UserCheck"></code>
+<script>
+var servertype="https://s.globalsources.com";//todo
+if((window.location.href.indexOf("uat") != -1) || (window.location.href.indexOf("iw-m") != -1)){ servertype="//www.uat.globalsources.com"; } else { servertype="https://s.globalsources.com"; };
+if((window.location.href.indexOf("secure") != -1)){ servertype="https://secure.globalsources.com"; }
+var date = new Date();var randomNum = date.getTime();
+</script>
+<script type="text/javascript"> document.write('<link rel="stylesheet" type="text/css" href="'+servertype+'/gsol/en/clean/static/s/COMMON.CSS?RN='+randomNum+'" />'); </script>
+<!-- <link rel="stylesheet" type="text/css" href="//s.globalsources.com/ST/css/GS_APP.CSS" /> -->
+<style>
+.playIcon, .qrIcon, .appIcon1, .appIcon2{background:url(https://s.globalsources.com/ST/i/APPEDU_SPRITE.PNG) no-repeat 0 0;display:inline-block;vertical-align:middle;line-height:1;}
+.playIcon{width:70px;height:70px;background-position:0 0;}
+.qrIcon{width:24px;height:24px;background-position:-80px 0;}
+.appIcon1{width:72px;height:24px;background-position:-110px 0;}
+.appIcon2{width:72px;height:24px;background-position:-110px -30px;}
+/*=S main css */
+.GS_footerTopWrap{margin-top: 0;}
+.APP_banner{background: url(https://s.globalsources.com/ST/i/APPEDU_BB_BG.JPG) no-repeat center top;/*height: 540px;*/width: 100%;padding-top: 1px;overflow-x: hidden;}
+.APP_banner .playerbg{background: url(https://s.globalsources.com/ST/i/APPEDU_PLAYER_BG.PNG) no-repeat center top;width: 100%;max-width: 1206px;height: 591px;padding: 44px 0 0;margin: 40px auto 0;}
+.APP_player{position: relative;width: 929px;height: 522px;margin: 0 auto;}
+/*.APP_player .preview, .APP_player .videobox{width: 100%;height: 100%;margin: 0 auto;}*/
+.APP_player .img{width: 100%;height: auto;}
+.APP_player .playIcon{position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);cursor: pointer;}
+.APP_player .video{width:100%;height:100%;}
+.APP_player .videobox.none{display: none;}
+.APP_player .close{position:absolute;top:-22px;right:0;cursor:pointer;width:23px;height:23px;color: #000;position: absolute;font-size: 0;background: #666;background: rgba(0, 0, 0, .6);display: none;}
+.APP_player .close:after,.APP_player .close:before{content: '';position: absolute;width: 11px;height: 2px;background-color: #fff;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);left: 6px;top: 10px;}
+.APP_player .close:before{-webkit-transform: rotate(45deg);transform: rotate(45deg);}
+.APP_player.fixed{position: fixed;background: none;width: 300px;max-height: 169px;right: 10px;bottom: 185px;z-index: 999;box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);}
+.APP_player.fixed .playIcon{width:48px;height:48px;background-size: 135px auto;}
+.APP_player.fixed .close{display: block;}
+body{overflow-x: hidden;-webkit-font-size-adjust: none;}
+.APP_main{min-width: 320px;padding-top: 1px;}
+.APP_sec, .APP_secapp{max-width: 1200px;margin: 90px auto 0; padding: 0 10px;}
+.APP_sec:after{content: '';clear: both;display: block;}
+.APP_sec .img{width: 530px;float: left;width: 45.6%;}
+.APP_sec .img img{max-width: 100%;height: auto;}
+.APP_sec .con{overflow: hidden;padding-left: 5.5%;padding-top: 105px;font-size: 1.5rem;line-height: 1.2;}
+.APP_sec .tit{color: #e72528;font-size: 1.667em;font-weight: 700;line-height: 1.1;letter-spacing: 1px;margin-bottom: 35px;}
+.APP_sec .tit:before{content: '';display: block;width: 140px;height: 16px;background: #e72528;background: linear-gradient(135deg, #f54c51, #e72528);border-radius: 8px;margin-bottom: 35px;}
+.APP_sec .txt{margin-bottom: 1.4em;}
+.APP_sec .bg{min-height: 390px;background: #e72528;background: -webkit-linear-gradient(315deg, #f54c51, #e72528);background: linear-gradient(135deg, #f54c51, #e72528);}
+.APP_sec .label{white-space: nowrap;font-size: 14px;color: #fff;line-height: 36px;padding: 0 20px;border-radius: 0 18px 18px 0;background: #e72528;background: linear-gradient(135deg, #f54c51, #e72528);display: inline-block;position: absolute;bottom: 389px;left: 0;font-weight: 700;}
+.APP_sec.R .img{float: right;position: relative;}
+.APP_sec.R .con{padding-right: 5.5%;padding-left: 0;}
+.APP_sec.B{width: 100%;max-width: none;padding: 0;position: relative;}
+.APP_sec.B .img{position: absolute;right: 0;bottom: 0;}
+/*.APP_sec.B .img:after{content: '';position:absolute;z-index: -1;width: 100%;height: 100%;box-shadow: 15px 30px 15px rgba(0,0,0,.15);border-radius: 60px 60px 0 0;}*/
+.APP_sec.B .con{padding: 90px 0 0 0;}
+.APP_sec.B .inner, .APP_sec.B .imgwrap{/*max-width: 670px;padding: 0 540px 0 10px;*/max-width: 1200px;padding: 0 10px;margin: 0 auto;position: relative;}
+.APP_sec.B .imgwrap{position: absolute;height: 100%;padding: 0;width: 100%;margin: auto;left: 0;right: 0;}
+.APP_sec.B .desc, .APP_sec.B .tit{padding-right: 50.5%;}
+.APP_sec.B .tit{margin-bottom: 18px;}
+.APP_sec.B .desc{padding-top: 18px;color: #fff;padding-bottom: 1px;}
+/*.APP_secbg{width: 100%;position: absolute;}*/
+.APP_secbg{width: 1200px;margin: 0 auto;position: relative;display: block;}
+.APP_secbg .circle{position: absolute;width: 300px;height: 300px;border: 90px solid #f9d3e0;border-radius: 50%;left: -550px;top: -52px;display: block;}
+.APP_secbg .circle2{border-color: #d9eafc;right: -550px;top: -52px;left: auto;}
+.APP_secapp{padding: 0 10px;}
+.APP_secapp .secTit{font-size: 2.25rem;font-weight: 700;padding: 0 0 45px;text-align: center;}
+.APP_secapp .secTit:before{content: '';display: block;width: 140px;height: 16px;background: #e72528;background: linear-gradient(135deg, #f54c51, #e72528);border-radius: 8px;margin: 0 auto 20px;}
+.APP_secapp .item{float:left;width: 45%;margin: 0 1% 35px 4%;}
+.APP_secapp .imgcon{float: left;width: 40%;max-width: 190px;box-shadow: 2px 2px 10px rgba(0, 0, 0, .2);border-radius: 6px;}
+.APP_secapp .imgcon .img{width: 88%;height: auto;display: block;margin: 6%;}
+.APP_secapp .logo{float: left;width: 55%;margin: 10% 0 0 5%;font-size: 1.125rem;}
+.APP_secapp .txt{margin: 0.5em 0 0;position: relative;padding-bottom: 1em;cursor: pointer;display: inline-block;}
+.APP_secapp .hightlight{color: #e72528;}
+.APP_secapp .txtqr{position: absolute;right: 0;top: 2em;display: none !important;}
+.APP_secapp .txt:hover .txtqr{display: block !important;z-index: 998;}
+.APP_secapp .mtxt{margin: 10px 0 0;cursor: pointer;display: none;}
+.APP_secapp .mtxt a{color: inherit;}
+.APP_secapp .tit{font-size: 1.5rem;margin: 0 0 10px;font-style: italic;font-weight: 700;}
+.APP_secapp .other{clear: both;}
+.APP_secapp .link{text-align: center;display: none;margin-top: 50px;}
+.APP_side{position: fixed;right: -500px;bottom: 85px;z-index: 999;}
+.APP_side.show{right: 10px;transition: right .5s ease 0s;}
+.APP_qr{font-size: 0.75rem;}
+.APP_qr .qr{width: 50px;height: 50px;display: block;background: #e72528;background: linear-gradient(135deg, #f54c51, #e72528);border-radius: 50%;box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);}
+.APP_qr .qrIcon{margin: 13px 0 0 13px;}
+.APP_qr .box{position: absolute;width: 200px;top: -40px;right: 66px;background: #fff;box-shadow: 0 2px 10px rgba(0,0,0,.2);padding: 10px;border-radius: 5px;display: none;}
+.APP_qr .box:before, .APP_qr .box:after {content: "";width: 0;height: 0;border-width: 8px;border-style: solid;position: absolute;bottom: 60px;border-color: transparent transparent transparent #eee;right: -17px;}
+.APP_qr .box:after{border-color: transparent transparent transparent #fff;right: -16px;}
+.APP_qr .tit{margin-bottom: 5px;font-weight: 700;}
+.APP_qr .itemapp{display: inline-block;vertical-align: top;width: 49%;text-align: center;}
+.APP_qr .imgapp{height: auto;max-width: 80px;}
+.APP_qr .img{max-width: 82px;height: auto;}
+.APP_qr .storelink{display: inline-block;margin: 0 0 10px 0;}
+.APP_qr .qrIcon{margin: 13px 0 0 13px;}
+.APP_qr.hover .box{display: block;}
+.mobileWrap .APP_secapp .link{display: block;}
+.mobileWrap .APP_secapp .mtxt{display: block;}
+.mobileWrap .APP_secapp .txt{display: none;}
+@media screen and (max-width:1200px) {
+    .APP_sec .con{font-size: 1.3rem;padding-top: 8.8%;}
+}
+@media screen and (max-width:1024px) {
+    .APP_sec .con{font-size: 1.1rem;}
+    .APP_sec .bg{min-height: 300px;}
+    .APP_sec .label{bottom: 299px;}
+    .APP_secbg{display: none;}
+}
+@media screen and (max-width:940px) {
+    .APP_banner .playerbg{padding:0;margin: 0 auto;height: auto;}
+    .APP_player{width: 100%;height: auto;}
+    .APP_main{background: url(https://s.globalsources.com/ST/i/APPEDU_BB_BG2.PNG) no-repeat center top;background-size: contain;padding-top: 10px;}
+    .APP_sec .con {font-size: 1rem;padding-top: 5%;}
+    .APP_sec .bg{min-height: 250px;}
+    .APP_sec .label{bottom: 248px;}
+    .APP_secapp .logo{font-size: 1rem;}
+}
+
+
+@media only screen and (max-width:767px){
+    .GS_header{width:100%!important;}
+    .GS_search{min-width:0;width:96%;margin-right:0;}
+    .GS_userNav, .GS_searchRight, .GS_footerTopWrap, .GS_footerServiceBox, .GS_footerSite, .GS_searchTSQuery  .GS_searchTS{display:none;}
+    .GS_footer{padding-top:0;}
+    .GS_copyright{border-top:1px solid #ccc;margin-top:0;}
+    .GS_searchTSQuery .GS_searchFiled{padding-right:8px;}
+}
+@media screen and (max-width:700px) {
+    .APP_player.fixed{width: 185px;max-height: 105px;}
+    .APP_player.fixed .playIcon{width:35px;height:35px;background-size: 100px auto;}
+    .APP_sec, .APP_secapp{margin: 40px auto 0;}
+    .APP_sec .tit{font-size: 1.2em;}
+    .APP_sec .tit:before{width: 80px;height: 8px;margin-bottom: 20px;}
+    .APP_sec .img{float: none !important;width: auto;max-width: 66%;text-align: center;margin: 0 auto;}
+    .APP_sec .con{padding: 0;margin: 20px 0 0;}
+    .APP_sec.B .imgwrap, .APP_sec.B .img{position: static;}
+    .APP_sec.B .bg{background: none;}
+    .APP_sec.B .con{padding: 30px 0;margin: 0;background: #e72528;background: linear-gradient(135deg, #f54c51, #e72528);}
+    .APP_sec.B .desc, .APP_sec.B .tit{color: #fff;padding: 0;}
+    .APP_sec.B .tit:before{background: #fff;}
+    .APP_sec .label{bottom: auto;top: -10px;left: 45%;-webkit-transform: translateX(-50%);transform: translateX(-50%);border-radius: 18px;}
+    .APP_sec .bg{min-height: 0;}
+    .APP_secapp .secTit{font-size: 1.5rem;padding: 0 0 20px;}
+    .APP_secapp .tit{font-size: 1.2rem;}
+    .APP_secapp .item{width: 100%;min-width: 0;}
+    .APP_secapp .txtqr{width: 150px;top: auto;bottom: -140px;}
+}
+@media screen and (max-width:640px) {
+    .APP_secapp .logo{float: none;}
+    .APP_secapp .item, .APP_secapp .con{margin: 0 0 20px;text-align: center;float: none;}
+    .APP_secapp .imgcon{display: none;}
+    .APP_secapp .img{margin: 0 auto;}
+    .APP_secapp .logo{width: auto;font-size: 1rem;margin: 0;}
+    .APP_secapp .txtqr{width: 150px;top: auto;bottom: -140px;}
+    .APP_secapp .mtxt{display: block;}
+    .APP_secapp .txt{display: none;}
+    .APP_qr{display: none;}
+}
+</style>
+</head>
+
+<body id="wrapId" class="wrapper1320">
+<!-- start JSP 0719 -->
+<span id="CookiePolicy"></span>
+<!-- end JSP 0719 -->
+<div id="TopNavStart">
+        <!--=S Global Nav & Header -->
+        <div id="spanish_toggle"></div>
+        <div class="GS_topBox">
+            <!--=S Global Nav Section -->
+            <div class="GS_globalNav_wrap">
+                <div class="GS_globalNav clearfix">
+                    <!-- IS global top menu start 0719 -->
+                    <span id="global_top_menu">
+                        <div class="GS_nav_wrap">
+                            <em class="mobile_GS_menu" id="mobile_GS_menu"><i class="menuIcon"></i></em>
+                            <ul class="GS_nav" id="mobile_GS_nav">
+                                <li class="GS_nav_list">
+                                    <a class="GS_nav_item GS_nav_cur"
+                                        href="https://www.globalsources.com/?source=GSOL_TopNav_OM">Online Marketplace</a>
+                                    <ul class="GS_globalNav_pop GS_nav_pop GS_nav_omPop">
+                                        <li><a href="https://www.autoparts.globalsources.com/?source=GSOL_TopNav_OM">Auto
+                                                Parts &amp; Accessories</a></li>
+    
+    
+    
+                                        <li><a
+                                                href="https://www.consumerelectronics.globalsources.com/?source=GSOL_TopNav_OM">Consumer
+                                                Electronics</a></li>
+    
+                                        <li><a
+                                                href="https://www.electroniccomponents.globalsources.com/?source=GSOL_TopNav_OM">Electronic
+                                                Components</a></li>
+    
+                                        <li><a href="https://www.fashion.globalsources.com/?source=GSOL_TopNav_OM">Fashion
+                                                Accessories &amp; Footwear</a></li>
+    
+                                        <li><a href="https://www.apparel.globalsources.com/?source=GSOL_TopNav_OM">Fashion
+                                                Apparel &amp; Fabrics</a></li>
+    
+                                        <li><a href="https://www.gifts.globalsources.com/?source=GSOL_TopNav_OM">Gifts &amp;
+                                                Premiums</a></li>
+    
+                                        <li><a
+                                                href="https://www.hardware.globalsources.com/?source=GSOL_TopNav_OM">Hardware</a>
+                                        </li>
+    
+                                        <li><a href="https://www.homeproducts.globalsources.com/?source=GSOL_TopNav_OM">Home
+                                                Products</a></li>
+    
+                                        <li><a
+                                                href="https://www.globalsources.com/gsol/I/LED-Optoelectronic-suppliers/s/2000000003844/3000000191662/-1.htm?source=GSOL_TopNav_OM">LEDs
+                                                &amp; Optoelectronics</a></li>
+    
+                                        <li><a href="https://www.machinery.globalsources.com/?source=GSOL_TopNav_OM">Machinery
+                                                &amp; Parts</a></li>
+    
+                                        <li><a
+                                                href="https://www.mobileelectronics.globalsources.com/?source=GSOL_TopNav_OM">Mobile
+                                                Electronics</a></li>
+    
+                                        <!--Added for MR#50919 -->
+                                        <li><a
+                                                href="https://www.smartlivingelectronics.globalsources.com/?source=GSOL_TopNav_OM">Smart
+                                                Living Electronics</a></li>
+    
+                                        <li><a
+                                                href="https://www.globalsources.com/gsol/I/Underwear-Swimwear-suppliers/s/2000000003844/3000000179379/-1.htm?source=GSOL_TopNav_OM">Underwear
+                                                &amp; Swimwear</a></li>
+    
+                                    </ul>
+                                </li>
+    
+                                <li class="GS_nav_list">
+                                    <a class="GS_nav_item"
+                                        href="https://www.globalsources.com/TRADESHOW/CSF/INDEX.HTM?source=GSOL_TopNav_TS"
+                                        target="externalWin">Trade Shows</a>
+                                    <ul id="sf_nav_pop" class="GS_globalNav_pop GS_nav_pop">
+    
+                                        <!-- Global Sources Exhibitions -->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/CSF/INDEX.HTM?source=GSOL_TopNav_TS"
+                                                target="externalWin">Global Sources Exhibitions</a></li>
+    
+                                        <!-- Electronic-->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/HONGKONG-EGROUP.HTM?source=GSOL_TopNav_TS_HKCE"
+                                                target="externalWin">Electronics</a></li>
+    
+                                        <!-- Electronics Indonesia-->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/INDONESIA-ELECTRONICS.HTM?source=GSOL_TopNav_TS_INDO"
+                                                target="externalWin">Electronics, Indonesia</a></li>
+    
+                                        <!-- Mobile Electronics -->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/HONGKONG-MOBILE-ELECTRONICS.HTM?source=GSOL_TopNav_TS_HKMBE"
+                                                target="externalWin">Mobile Electronics</a></li>
+    
+                                        <!-- Gifts & Home -->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/HONGKONG-LIFESTYLE.HTM?source=GSOL_TopNav_TS_HKLS"
+                                                target="externalWin">Lifestyle</a></li>
+    
+                                        <!-- Fashion -->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/HONGKONG-FASHION.HTM?source=GSOL_TopNav_TS_HKFA"
+                                                target="externalWin">Fashion</a></li>
+    
+                                        <!-- Other Trade Shows -->
+                                        <li><a href="https://www.globalsources.com/TRADESHOW/TRADESHOW.HTM?source=GSOL_TopNav_TS"
+                                                target="externalWin">Other Trade Shows</a></li>
+    
+                                    </ul>
+                                </li>
+                                <li class="GS_nav_list">
+                                    <a class="GS_nav_item " href="#">Smart Sourcing</a>
+                                    <ul class="GS_globalNav_pop GS_nav_pop">
+                                        <li><a href="https://www.globalsources.com/discover/GSOL/innovative-products.htm?source=GSOL_TopNav_SS_AC"
+                                                target="externalWin">Analyst's Choice</a></li>
+                                        <li><a href="https://www.globalsources.com/NEWS/Home.HTM?source=GSOL_TopNav_SS_SNA"
+                                                target="externalWin">Sourcing News &amp; Advice</a></li>
+                                        <!-- Removed New Sourcing Markets for MR 50909-->
+                                        <li><a href="https://www.globalsources.com/summit?source=GSOL_TopNav_SS_GSS"
+                                                target="externalWin">Global Sources Summit</a></li>
+    
+                                    </ul>
+                                </li>
+                                <li class="GS_nav_list">
+                                    <a class="GS_nav_item " href="#">Other Services</a>
+                                    <ul class="GS_globalNav_pop GS_nav_pop">
+    
+                                        <li><a href="https://message.globalsources.com/rfq?source=GSOL_TopNav_OS_RFQ"
+                                                target="externalWin"
+                                                onclick="dcsMultiTrack('DCS.dcsuri', '/RFQ.htm', 'WT.cg_n', 'RFQ Form View', 'WT.si_n', 'RFQ', 'WT.si_p', 'RFQ-View', 'WT.formid', 'RFQ-MC', 'WT.dl','0','WT.source','', 'WT.test', '')">RFQ</a>
+                                        </li>
+                                        <li><a
+                                                href="https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;page=prodalert/PAMarketing&amp;source=GSOL_TopNav_OS_PA">Product
+                                                Alerts</a></li>
+                                        <li><a href="https://www.globalsources.com/SITE/import-export-service-providers.HTM?source=GSOL_TopNav_OS_Exp"
+                                                target="_blank">Import &amp; Export Services</a></li>
+                                        <li><a href="https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;page=emag/SourcingMagazines&amp;src=hdr&amp;pi_proj=10AWJP&amp;source=GSOL_TopNav_MR"
+                                                target="externalWin">Magazines</a></li>
+                                        <li><a href="https://www.globalsources.com/SITE/PSE.HTM?source=GSOL_TopNav_OS_PSE"
+                                                target="externalWin">Private Sourcing Events</a></li>
+                                        <li><a href="https://www.sellproducts.globalsources.com/RegisterSYP.jsp?Reg_path=GSOLTopNav"
+                                                target="externalWin">Sell Your Products</a></li>
+                                        <li><a href="http://www.corporate.globalsources.com/?source=GSOL_TopNav_OS_About"
+                                                target="externalWin">About Us</a></li>
+                                        <!-- Sample order code commented -->
+                                        <li><a href="https://www.globalsources.com/BUY-PRODUCT-SAMPLES.HTM"
+                                                target="externalWin">Buy Samples Now</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </span>
+                    <!-- IS global top menu end 0719-->
+    
+                    <!-- IS Non-Login/Login Snippets Start 0719 -->
+                    <div id="global_navigation">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                        <ul class="GS_userNav">
+    
+                            <li class="GS_userNav_list"><a
+                                    href="https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;page=LoginFromReferer"
+                                    class="GS_userNav_item" accesskey="Top_Right">Login</a></li>
+                            <li class="GS_userNav_list">
+                                <a href="#" class="GS_userNav_item">Register <span class="arrowDown"></span></a>
+                                <ul class="GS_globalNav_pop GS_userNav_pop GS_reg_pop">
+                                    <li><a href="https://login.globalsources.com/sso/GeneralManager?action=RegisterGSOLUser&amp;userTemplate=GSOLUSERMAG&amp;language=en"
+                                            accesskey="Top_Right">Buyer</a></li>
+                                    <li><a href="https://cn.sellproducts.globalsources.com/RegisterSYP.jsp?Reg_path=eGSOLGlobalNav&amp;source=eGSOLGlobalNav"
+                                            accesskey="Top_Right">Supplier</a></li>
+                                </ul>
+                            </li>
+    
+                            <li class="GS_userNav_list GS_msgPanel_wrap">
+    
+                                <a class="GS_userNav_item" href="https://message.globalsources.com" target="_blank"
+                                    onclick="dcsMultiTrack('DCS.dcsuri', '/MessageCenter.htm', 'WT.dl', '99', 'WT.ti', 'Message Center Link', 'WT.cg_n', 'Message Center Link - GlobalNav');"><span
+                                        class="GS_msgLink">Messages</span> <strong id="countnum"></strong></a>
+    
+                            </li>
+    
+                            <li class="GS_userNav_list"><a
+                                    href="https://secure.globalsources.com/gsol/desktop/transact/orderList?"
+                                    class="GS_userNav_item">Orders</a></li>
+                            <li class="GS_userNav_list"><a
+                                    href="https://www.globalsources.com/gsol/GeneralManager?action=ReMap&amp;where=GoInquiryBasket"
+                                    class="GS_userNav_item" accesskey="Top_Right"><i class="addToBasketIcon"></i></a></li>
+                        </ul>
+    
+                    </div>
+                    <!-- IS Non-Login/Login Snippets End 0719 -->
+                </div>
+            </div>
+            <!--=E Global Nav Section -->
+            <!--=S Header Section -->
+            <div class="GS_headerWrap">
+                <div class="GS_header clearfix">
+                    <div class="GS_logo">
+                        <a href="//www.globalsources.com"><img src="https://s.globalsources.com/ST/i/GSLOGO.PNG"
+                                alt="Manufacturers &amp; Suppliers" title="Manufacturers &amp; Suppliers" border="0"></a>
+                        <h1 class="GS_logo_tit">Reliable exporters: find them and meet them</h1>
+                    </div>
+                    <!-- Start JSP Search Bar Section From IS  0719  -->
+                    <div class="GS_searchBox clearfix">
+                        <div id="include_searchbox">
+                            <form id="headerSearchBar" autocomplete="off" name="searchbox" method="get"
+                                action="https://www.globalsources.com/gsol/GeneralManager" class=""
+                                onsubmit="return false;">
+                                <input type="hidden" name="point_search" value="on">
+                                <input type="hidden" name="page" value="search/ProductSearchResults">
+                                <input type="hidden" name="product_search" value="on">
+                                <input type="hidden" name="supplier_search" value="off">
+                                <input type="hidden" name="article_search" value="off">
+    
+                                <input type="hidden" name="apclick" id="apclick" value="">
+                                <input type="hidden" name="qType" id="qType" value="PRODUCT">
+                                <input type="hidden" id="changeOption" value="F">
+                                <span id="kwdiv"></span>
+                                <span id="matchdiv"></span>
+                                <input type="hidden" name="type" value="new">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                                <div class="GS_search GS_searchRFQ">
+                                    <div class="GS_searchType">
+                                        <div class="searchType_tit" id="qTypeSelTrigger"><a
+                                                href="javascript:void(0);">Products</a></div>
+                                        <ul class="searchType_list" id="qTypeSelTarget" style="display: none;">
+                                            <li optionval="PRODUCT"><a href="javascript:void(0);">Products</a></li>
+                                            <li optionval="SUPPLIER"><a href="javascript:void(0);">Suppliers</a></li>
+                                            <li optionval="EXHIBITOR"><a href="javascript:void(0);">Exhibitors</a></li>
+                                            <li optionval="NEWS"><a href="javascript:void(0);">News</a></li>
+                                        </ul>
+                                    </div>
+    
+                                    <div class="GS_searchQuery GS_searchTSQuery">
+                                        <input type="text" id="gsolquery" name="query" class="GS_searchFiled inputTip"
+                                            value="" onkeypress="if(event.keyCode==13){setUpHeaderSearch();return false;}"
+                                            autocomplete="off">
+    
+                                        <span class="GS_searchTS">
+                                            <div class="txt" id="GS_searchTSResult">
+                                                <span class="val" defaultvalue="Select Trade Shows">Select Trade
+                                                    Shows</span>
+                                                <span class="icon">
+                                                    <em class="filterIcon"
+                                                        title="Filter the search results by trade shows"></em>
+                                                    <em class="filteredIcon iconVal none" title=""></em>
+                                                </span>
+                                            </div>
+                                            <div class="pop" id="GS_searchTSPop">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                                                <p class="popTit">Display only results from:</p>
+                                                <ul class="list">
+    
+                                                    <li>
+                                                        <label>
+                                                            <input class="filterAll" name="" type="checkbox"> <span
+                                                                class="chkTxt">
+                                                                All Trade Shows</span>
+                                                        </label>
+                                                    </li>
+    
+                                                    <li>
+                                                        <label>
+                                                            <input class="filter" name="suppcsfVal" type="checkbox"
+                                                                value="China Sourcing Fair: Global Sources Mobile Electronics Show, Hong Kong SAR - Apr 18-21, 2020">
+                                                            <span class="chkTxt">Mobile Electronics Show</span>
+                                                            <input class="none" name="tsPubCode" type="checkbox"
+                                                                value="MBE">
+                                                        </label>
+                                                    </li>
+    
+                                                    <li>
+                                                        <label>
+                                                            <input class="filter" name="suppcsfVal" type="checkbox"
+                                                                value="China Sourcing Fair: Global Sources Lifestyle Show, Hong Kong SAR - Apr 27-30, 2020">
+                                                            <span class="chkTxt">Lifestyle Show</span>
+                                                            <input class="none" name="tsPubCode" type="checkbox" value="GH">
+                                                        </label>
+                                                    </li>
+    
+                                                    <li>
+                                                        <label>
+                                                            <input class="filter" name="suppcsfVal" type="checkbox"
+                                                                value="China Sourcing Fair: Global Sources Consumer Electronics Show, Hong Kong SAR - Apr 11-14, 2020">
+                                                            <span class="chkTxt">Consumer Electronics Show</span>
+                                                            <input class="none" name="tsPubCode" type="checkbox"
+                                                                value="ELEC">
+                                                        </label>
+                                                    </li>
+    
+                                                    <li>
+                                                        <label>
+                                                            <input class="filter" name="suppcsfVal" type="checkbox"
+                                                                value="China Sourcing Fair: Global Sources Fashion Show, Hong Kong SAR - Apr 27-30, 2020">
+                                                            <span class="chkTxt">Fashion Show</span>
+                                                            <input class="none" name="tsPubCode" type="checkbox" value="FA">
+                                                        </label>
+                                                    </li>
+    
+                                                </ul>
+                                            </div>
+                                        </span>
+    
+                                        <div class="searchRelated" id="relateSearch" domain="https://www.globalsources.com"
+                                            sourcecode="Other_PopularRecentSearch" language="en"
+                                            pagetype="snippets/include_searchbox" style="display: none;">
+                                            <dl class="st_pop_search">
+                                                <dt>Popular Product Searches</dt>
+                                                <dd> <a href="http://www.globalsources.com/gsol/GeneralManager?point_search=on&amp;page=search%2FProductSearchResults&amp;product_search=on&amp;supplier_search=off&amp;article_search=off&amp;type=new&amp;search_what=1&amp;query=Bluetooth%20Speaker&amp;point_id=3000000149681&amp;catalog_id=2000000003844&amp;from=&amp;loc=t&amp;AGG=N&amp;supp_list=true&amp;compare_table=true&amp;KWSearchType=ProdSearch&amp;action=GetPoint&amp;action=DoFreeTextSearch&amp;supp_list=true&amp;compare_table=true&amp;querytype=PopKW&amp;source=Other_PopularRecentSearch"
+                                                        accesskey="HC" title="Bluetooth Speaker">Bluetooth Speaker</a> </dd>
+                                                <dd> <a href="http://www.globalsources.com/gsol/GeneralManager?point_search=on&amp;page=search%2FProductSearchResults&amp;product_search=on&amp;supplier_search=off&amp;article_search=off&amp;type=new&amp;search_what=1&amp;query=Power%20Bank&amp;point_id=3000000149681&amp;catalog_id=2000000003844&amp;from=&amp;loc=t&amp;AGG=N&amp;supp_list=true&amp;compare_table=true&amp;KWSearchType=ProdSearch&amp;action=GetPoint&amp;action=DoFreeTextSearch&amp;supp_list=true&amp;compare_table=true&amp;querytype=PopKW&amp;source=Other_PopularRecentSearch"
+                                                        accesskey="HC" title="Power Bank">Power Bank</a> </dd>
+                                                <dd> <a href="http://www.globalsources.com/gsol/GeneralManager?point_search=on&amp;page=search%2FProductSearchResults&amp;product_search=on&amp;supplier_search=off&amp;article_search=off&amp;type=new&amp;search_what=1&amp;query=Led&amp;point_id=3000000149681&amp;catalog_id=2000000003844&amp;from=&amp;loc=t&amp;AGG=N&amp;supp_list=true&amp;compare_table=true&amp;KWSearchType=ProdSearch&amp;action=GetPoint&amp;action=DoFreeTextSearch&amp;supp_list=true&amp;compare_table=true&amp;querytype=PopKW&amp;source=Other_PopularRecentSearch"
+                                                        accesskey="HC" title="Smart Home">Led</a> </dd>
+                                                <dd> <a href="http://www.globalsources.com/gsol/GeneralManager?point_search=on&amp;page=search%2FProductSearchResults&amp;product_search=on&amp;supplier_search=off&amp;article_search=off&amp;type=new&amp;search_what=1&amp;query=Toys&amp;point_id=3000000149681&amp;catalog_id=2000000003844&amp;from=&amp;loc=t&amp;AGG=N&amp;supp_list=true&amp;compare_table=true&amp;KWSearchType=ProdSearch&amp;action=GetPoint&amp;action=DoFreeTextSearch&amp;supp_list=true&amp;compare_table=true&amp;querytype=PopKW&amp;source=Other_PopularRecentSearch"
+                                                        accesskey="HC" title="Battery">Toys</a> </dd>
+                                                <dd> <a href="http://www.globalsources.com/gsol/GeneralManager?point_search=on&amp;page=search%2FProductSearchResults&amp;product_search=on&amp;supplier_search=off&amp;article_search=off&amp;type=new&amp;search_what=1&amp;query=Shoes&amp;point_id=3000000149681&amp;catalog_id=2000000003844&amp;from=&amp;loc=t&amp;AGG=N&amp;supp_list=true&amp;compare_table=true&amp;KWSearchType=ProdSearch&amp;action=GetPoint&amp;action=DoFreeTextSearch&amp;supp_list=true&amp;compare_table=true&amp;querytype=PopKW&amp;source=Other_PopularRecentSearch"
+                                                        accesskey="HC" title="Wireless Mouse">Shoes</a> </dd>
+    
+    
+    
+                                            </dl>
+                                            <script>
+                                                for (var s = document.getElementsByClassName("st_pop_search")[0]
+                                                        .getElementsByTagName("a"), i = 0; i < s.length; i++) {
+                                                    var a_tag_query = s[i].innerHTML,
+                                                        a_tag_href =
+                                                        "http://www.globalsources.com/gsol/GeneralManager?point_search=on&page=search%2FProductSearchResults&product_search=on&supplier_search=off&article_search=off&type=new&search_what=1&query=" +
+                                                        a_tag_query +
+                                                        "&point_id=3000000149681&catalog_id=2000000003844&from=&loc=t&AGG=N&supp_list=true&compare_table=true&KWSearchType=ProdSearch&action=GetPoint&action=DoFreeTextSearch&supp_list=true&compare_table=true&querytype=PopKW";
+                                                    s[i].setAttribute("href", a_tag_href)
+                                                }
+                                            </script>
+    
+                                        </div>
+                                    </div>
+                                    <input onclick="setUpHeaderSearch();return false;" id="keywordBtnSearch" type="submit"
+                                        class="GS_searchBtn" value="">
+                                    <input type="hidden" name="language" id="language" value="en">
+                                </div>
+    
+                                <div class="GS_searchRight clearfix">
+    
+                                    <!--==S Get Quotations -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                                    <a href="https://message.globalsources.com/rfq" class="GS_quotBox" id="GS_quotBox"
+                                        target="_black" accesskey="RFQ_TopSearch"
+                                        onclick="dcsMultiTrack('DCS.dcsuri', '/RFQ.htm', 'WT.cg_n', 'RFQ Form View', 'WT.si_n', 'RFQ', 'WT.si_p', 'RFQ-View', 'WT.formid', 'RFQ-MC', 'WT.dl','0','WT.source','', 'WT.test', '')">Get
+                                        Quotations</a>
+    
+                                    <!--==E Get Quotations -->
+                                </div>
+    
+    
+                                <input type="hidden" id="lastview" value="LAST_VIEW">
+                                <input type="hidden" id="expiredday" value="365">
+                                <input type="hidden" id="gridview" value="prodGridTab_new">
+                                <input type="hidden" id="prodlistview" value="prodListTab_new">
+                                <input type="hidden" name="point_id" value="3000000149681">
+                                <input type="hidden" name="catalog_id" value="2000000003844">
+                                <input type="hidden" name="from" value="">
+                                <input type="hidden" name="loc" value="t">
+                                <input type="hidden" name="AGG" value="N">
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End JSP Search Bar Section From IS  0719  -->
+                </div>
+            </div>
+            <!--=E Header Section -->
+        </div>
+        <!--=E Global Nav & Header -->
+    </div>
+
+<!--=S main page content -->
+<div class="APP_banner">
+    <div class="playerbg">
+        <div class="APP_player">
+            <span class="close"></span>
+            <div class="preview">
+                <img class="img" src="https://s.globalsources.com/ST/i/APPEDU_PLAYER_POST.JPG" alt="" />
+                <span class="playIcon"></span> 
+            </div>
+            <div class="videobox none">
+                <video class="video" controls="controls" preload="none" controlslist="nodownload" webkit-playsinline="webkit-playsinline" playsinline="playsinline">
+                    <source src="https://s.globalsources.com/ST/i/APPEDU_VIDEO.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="APP_main">
+    <div class="APP_secapp clearfix" id="APP_secapp">
+        <h2 class="secTit">Global Sources mobile app</h2>
+        <dl class="item">
+            <dd class="imgcon">
+                <img class="img lazy" data-original="https://s.globalsources.com/ST/i/GSOL-MOBILE-APPS-QR1.PNG" alt="App Store">
+            </dd>
+            <dd class="logo">
+                <a href="https://itunes.apple.com/us/app/globalsources.com/id952052155?mt=8"><img class="img lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_LOGO_APP.JPG" alt="App Store" /></a>
+            </dd>
+        </dl>
+        <dl class="item">
+            <dd class="imgcon">
+                <img class="img lazy" data-original="https://s.globalsources.com/ST/i/GSOL-MOBILE-APPS-QR2.PNG" alt="App Store">
+            </dd>
+            <dd class="logo">
+                <a href="https://play.google.com/store/apps/details?id=com.globalsources.globalsources_app"><img class="img lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_LOGO_GOOGLE.JPG" alt="Google Play" /></a>
+                <p class="txt">Still cannot download? <em class="hightlight">Click here.</em><img relativeelem="#APP_secapp" class="txtqr lazy" data-original="https://s.globalsources.com/ST/i/GS_APP_QR_CODE.PNG" alt=""></a></p>
+                <p class="mtxt"><a href="http://mobileapi.globalsources.com/scan.jsp?appId=2">Still cannot download? Click here.</a></p>
+            </dd>
+        </dl>
+    </div>
+    <div class="APP_sec L">
+        <div class="img">
+            <img class="lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_PIC1.JPG" alt="" />
+        </div>
+        <div class="con">
+            <h2 class="tit">Search for millions of products anytime, anywhere</h2>
+            <div class="desc">
+                <p class="txt">Browse new and best-selling products from verified suppliers on-the-go.</p>
+                <p class="txt">Submit buying requests and compare quotations.</p>
+                <p class="txt">PLUS learn more about the latest industry news and trends.</p>
+            </div>
+        </div>
+    </div>
+    <div class="APP_secbg"><span class="circle circle1"></span></div>
+    <div class="APP_sec R">
+        <div class="img">
+            <img class="lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_PIC2.JPG" alt="" />
+        </div>
+        <div class="con">
+            <h2 class="tit">Easily contact verified suppliers</h2>
+            <div class="desc">
+                <p class="txt">Reach out to suppliers or manufacturers across Asia and Greater China</p>
+                <p class="txt">Be more efficient by using the brand-new chat function to send messages with video or images.</p>
+            </div>
+        </div>
+    </div>
+    <div class="APP_secbg"><span class="circle circle2"></span></div>
+    <div class="APP_sec L">
+        <div class="img">
+            <img class="lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_PIC3.JPG" alt="" />
+        </div>
+        <div class="con">
+            <h2 class="tit">Discover your favorite supplier’s latest releases</h2>
+            <div class="desc">
+                <p class="txt">Follow your favorite supplier and stay up-to-date with their latest product launches.</p>
+                <p class="txt">PLUS find more relevant B2B suppliers and product selections, curated from your use within the app.</p>
+            </div>
+        </div>
+    </div>
+    <div class="APP_sec B">
+        <div class="imgwrap">
+            <div class="img">
+                <img class="lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_PIC4.PNG" alt="" />
+                <span class="label">Coming Soon</span>
+            </div>
+        </div>
+        <div class="con">
+            <div class="inner">
+                <h2 class="tit">Level up your trade show experience</h2>
+            </div>
+            <div class="bg">
+                <div class="inner">
+                    <div class="desc">
+                        <p class="txt">Source from products and exhibitors participating at the Global Sources trade shows.</p>
+                        <p class="txt">Use the app to seamlessly pre-register for the show and easily access your e-badge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="APP_side">
+    <div class="APP_qr">
+        <span class="qr"><span class="qrIcon"></span></span>
+        <div class="box">
+            <p class="tit">Download App!</p>
+            <div class="itemapp">
+                <a class="storelink" href="https://itunes.apple.com/us/app/globalsources.com/id952052155?mt=8">
+                    <img class="img lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_LOGO_APP.JPG" alt="App Store">
+                </a>
+                <img class="imgapp lazy" data-original="https://s.globalsources.com/ST/i/GSOL-MOBILE-APPS-QR1.PNG" alt="" />
+            </div>
+            <div class="itemapp">
+                <a class="storelink" href="https://play.google.com/store/apps/details?id=com.globalsources.globalsources_app">
+                    <img class="img lazy" data-original="https://s.globalsources.com/ST/i/APPEDU_LOGO_GOOGLE.JPG" alt="Google Play">
+                </a>
+                <img class="imgapp lazy" data-original="https://s.globalsources.com/ST/i/GSOL-MOBILE-APPS-QR2.PNG" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+<!--=E main page content -->
+
+<!--=S Footer -->
+<div id="FooterStart">
+    <!-- Start JSP from IS Jsmsg - footer  0719  -->
+    <span id="Footer">
+    <!--=S footer section -->
+    <div class="GS_footerTopWrap">
+        <div class="GS_footerTop" style="padding-left: 20px;">
+            
+            <div class="GS_footerSN">
+                <dl>
+                    <dt>Subscribe Now!</dt>
+                <dd class="GS_footerSN_txt">Free Alerts on newly added products!</dd>
+                <dd class="GS_footer_subscr">
+                    <form onsubmit="return false;" name="hdr_palite" method="post">
+                        
+                        <input type="text" class="GS_footerSN_input" placeholder="Your Email" name="email" onkeypress="keypresssubmitWithForm('https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;action=RedirectNewLite&amp;path=getnfied',false,event,document.hdr_palite);">
+                        <input type="submit" value="Subscribe" class="redButton" onclick="regpaliteUserWithKeyWorldForm('https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;action=RedirectNewLite&amp;path=getnfied',false,document.hdr_palite);">
+                    </form>
+                </dd>
+            </dl>
+        </div>
+        
+        <div class="GS_footerFU ">
+            <dl>
+                <dt>Follow Us</dt>
+                <dd class="GS_footerFU_share">
+                    <a href="https://www.globalsources.com/sn/fb2/?source=3rd_FB_GSOL_Footer" class="facebookIcon"></a> 
+
+                    <a href="https://www.globalsources.com/sn/twit2/?source=3rd_twit_GSOL_Footer" class="twitterIcon"></a> 
+
+                    <!-- MR 52178 <a href="https://plus.google.com/115663325215168288919" class="googleIcon"></a> -->
+                    <a href="https://www.instagram.com/global_sources/" class="instagramIcon"></a> 
+                    <a href="https://www.linkedin.com/company/global-sources" class="linkedInIcon"></a>
+
+                    
+                    <div class="GS_footerWechat" id="footerWechat">
+                        <a href="javascript:void(0)" class="wechatIcon">Wechat</a>
+                        <div class="GS_footerWechat_txt">
+                            <img class="wechatQR" src="https://s.globalsources.com/gsol/en/clean/images/BLANK.GIF" data-qr="https://s.globalsources.com/SITE/I/WECHAT-QR.JPG" width="110" height="110">
+                            <p>关注 “环球资源外贸” 官方微信，获取实时外贸资讯</p>
+                        </div>
+                    </div>
+                    
+                    <!-- MR 52178  <a href="https://www.globalsources.com/gsol/I/all-manufacturers/r/2000000003844/3000000149681/-1/1/master_rss.htm?referrer=RSS_Hp" class="rssIcon"></a>-->
+
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+
+    <div class="GS_footer">
+    
+        <div class="GS_footerServiceBox">               
+        <div class="GS_footerService">               
+                <div class="GS_footerService_con">                          
+                        <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">Find Suppliers Online</li>
+                        <li><a href="https://www.globalsources.com/gsol/I/all-manufacturers/b/2000000003844/3000000149681/-1.htm" target="externalWin">Browse Product Categories</a></li>
+                        <li><a href="https://www.globalsources.com/new-products/NL0/Listing.htm" target="externalWin">New Products</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/topmanufacturers.html" target="externalWin">Top Products</a></li>
+                        <li><a href="https://www.chinasuppliers.globalsources.com/SITE/top-china-suppliers.html" target="externalWin">Top China Suppliers</a></li>
+                        <li><a href="https://www.globalsources.com/gsol/I/all-countries/c/2000000003844/3000000149681/-1.htm" target="externalWin">Source by Region</a></li>
+                        <li><a href="https://www.globalsources.com/ST/20-Most-Popular-Products.html" target="externalWin">Top 20 Products by Industry</a></li>
+                        <li><a href="https://www.globalsources.com/wholesale/WL0/wholesale-directory.html" target="externalWin">Wholesale Directory</a></li>
+                        <li><a href="https://www.globalsources.com/wholesale/Drilldown/homepage.html" target="externalWin">Wholesale Products</a></li> 						
+                        <li><a href="https://www.globalsources.com/SITE/factory-directory.html" target="externalWin">Factory Directory</a></li>												
+                        <li><a href="https://www.globalsources.com/SITE/product-directory.html" target="externalWin">Product Catalog</a></li>						
+                        <li><a href="https://spanish.globalsources.com" target="externalWin">Fabricantes y Maquinaria<span class="ft_betaIco">beta</span> | <span class="block">Global Sources</span></a></li>
+                        <li>
+
+
+
+
+
+
+
+
+</li>
+                    </ul>
+                    <ul class="GS_footerService_list">
+                            <li class="GS_footerService_tit">Buyer Tools</li>
+                            <li><a href="https://www.globalsources.com/HELP/RFI/EN/MESSAGE-CENTER-INTRO.HTM" target="externalWin">Message Center</a></li>
+                            <li><a href="https://www.globalsources.com/SITE/GSOL-MOBILE-APPS.HTM" target="externalWin">Global Sources Apps</a></li>
+                            <li><a href="https://www.globalsources.com/SITE/import-export-service-providers.HTM?source=GSOL_Footer" target="_blank">Import &amp; Export Services</a></li>
+                            <li><a href="https://www.globalsources.com/NEWS/Home.HTM?source=GSOL_Footer" target="externalWin">Sourcing News &amp; Advice</a></li>
+                            <li><a href="https://www.globalsources.com/SITE/MAGAZINES.HTM?pi_proj=10AWJP" target="externalWin">Sourcing e-Magazines</a></li>
+                            
+                            <li><a href="https://message.globalsources.com/rfq?source=GSOL_RFQ_Footer" target="externalWin" onclick="dcsMultiTrack('DCS.dcsuri', '/RFQ.htm', 'WT.cg_n', 'RFQ Form View', 'WT.si_n', 'RFQ', 'WT.si_p', 'RFQ-View', 'WT.formid', 'RFQ-MC', 'WT.dl','0','WT.source','', 'WT.test', '')">RFQ</a></li>
+                            
+                    </ul>
+                    <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">Supplier Tools</li>
+                        <li><a href="https://www.sellproducts.globalsources.com/" target="externalWin">Reach Qualified Buyers</a></li>
+                        <li><a href="https://www.sellproducts.globalsources.com/RegisterSYP.jsp?Reg_path=eGSOLHPSYP" target="externalWin">Sign up for a Free Trial</a></li>
+                        <li><a href="https://secure.globalsources.com/SITE/SELL/APPLICATION-FORM.HTM?source=eGSOLFooter_Tools" target="externalWin">Become a Verified Supplier</a></li>
+                        <li><a href="http://www.b2b.globalsources.com.cn/O2OService" target="externalWin">环球 O2O 推广</a></li>
+                        <li><a href="http://www.b2b.globalsources.com.cn/success" target="externalWin">供应商成功故事</a></li>
+                        <li><a href="https://cn.sellproducts.globalsources.com/RegisterSYP.jsp?Reg_path=eGSOLFooter_Tools&amp;source=eGSOLFooter_Tools" target="externalWin">免费网上广告注册</a></li>
+                        <li><a href="http://www.b2b.globalsources.com.cn/corporate_cn/file/WechatProPage.html" target="externalWin">微资讯</a></li>
+                    </ul>
+                    <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">About Us</li>
+                        <li><a href="http://www.corporate.globalsources.com/PROFILE/BGROUND2.HTM" target="externalWin">About Global Sources</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/BUYER/MAIN.HTM" target="externalWin">Our Services</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/QUALITY.HTM" target="externalWin">Our Quality Commitment</a></li>
+                        <li><a href="https://www.globalsources.com/ST/Testimonials/Testimonials.htm" target="externalWin">Buyer Testimonials</a></li>
+                        <!-- MR 52244 <li><a href="https:///ST/Videos/Videos-Directory.htm" target="externalWin">Videos</a></li>  -->
+                    </ul>                  
+                </div>
+                <div class="GS_footerService_con">                   
+                    <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">Meet Suppliers Face-to-Face</li>
+                        <li><a href="https://www.globalsources.com/TRADESHOW/CSF/INDEX.HTM" target="externalWin">Trade Shows</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/PSE.HTM" target="externalWin">Private Sourcing Events</a></li>
+                    </ul>
+                    <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">Buyer Support</li>
+                        <li><a href="https://www.globalsources.com/SITE/BUYERGUIDE.HTM" target="externalWin">What Every Buyer Needs to Know</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/ASK-THE-EXPERTS/Home.htm" target="externalWin">Ask the Sourcing Experts</a></li>
+                        <li><a href="http://www.smartchinasourcing.com/" target="externalWin">Learn to Source from China</a></li>
+                    </ul>
+                        <ul class="GS_footerService_list">
+                        <li class="GS_footerService_tit">Help</li>
+                        <li><a href="https://www.globalsources.com/HELP/GDTOUR/USER_GUIDE1.HTM?source=GSOL_Footer" target="externalWin">User Guide</a></li>
+                        <li><a href="https://www.globalsources.com/HELP/SITEHELP.HTM?source=GSOL_Footer" target="externalWin">Help &amp; FAQ</a></li>
+                        <li><a href="https://www.globalsources.com/gsol/GeneralManager?&amp;design=clean&amp;language=en&amp;page=ContactUs&amp;source=GSOL_Footer" target="externalWin">Contact Customer Service</a></li>
+                        <li><a href="https://www.globalsources.com/CUSTOMER/IPPOLICY.HTM?source=GSOL_Footer" target="externalWin">Report Intellectual Property Infringement</a></li>
+                        <li><a href="https://secure.globalsources.com/CUSTOMER/SUPPLIER-COMPLAINT-FORM.HTM?source=GSOL_Footer" target="externalWin">Submit Dispute</a></li>
+                        <li><a href="https://www.globalsources.com/SITE/SITEMAP.HTM?source=GSOL_Footer" target="externalWin">Site Map</a></li>
+                    </ul>
+            </div>
+        </div>
+        </div>
+        
+        <div class="GS_footerSite">
+            <p>Global Sources Sourcing Sites: <a href="https://www.globalsources.com/" target="externalWin">GlobalSources.com</a></p>
+            <p>Global Sources Other Region Sites: <a id="LDOverlayLink" href="https://www.globalsources.com.hk/">Hong Kong</a> </p>
+            
+            <p>Global Sources Management Site: <a href="http://www.ceconline.com/" target="externalWin">世界经理人</a></p>
+        </div>
+    
+        <div class="GS_copyright">
+    <p>Copyright © 2020 Publishers Representatives Limited. <a href="javascript:pop('https://www.globalsources.com/CUSTOMER/ALLRIGHTS.HTM','130','640');">All rights reserved</a>.</p>
+    <p class="GS_copyright_link"> <a href="https://www.globalsources.com/SITE/TERMSOFUSE.HTM" target="externalWin" rel="nofollow">Terms of Use</a> <a href="https://www.globalsources.com/HELP/PRIVACY.HTM" target=" externalWin" rel="nofollow">Privacy Policy</a> <a href="https://www.globalsources.com/CUSTOMER/SECMEASURES.HTM" target="externalWin" rel="nofollow">Security Measures</a> <a href="https://www.globalsources.com/CUSTOMER/IPPOLICY.HTM" target=" externalWin" rel="nofollow">IP Policy</a> <a href="https://www.globalsources.com/HELP/COOKIE-POLICY.HTM" target="externalWin" rel="nofollow">Cookie Policy</a>
+    <a href="https://www.globalsources.com/CUSTOMER/DISCLAIMER.HTM#?source=GSOLHP" target="externalWin">About The Translation</a>
+    <span>hkweb2.globalsources.com</span>
+    </p>
+    </div><script type="text/javascript">
+    function pop(page,height,width)
+    {
+        var params = "height=" + height + ",width=" + width + ",status=1,toolbar=0,directories=0,menubar=0,location=0,scrollbars=1,resizable=1,top=50,left=50,screenX=50,screenY=50";
+        var mypopup = window.open(page,"PopupWindow",params);
+        mypopup.focus();
+    }
+    </script>
+    <!--=S floating alert -->
+    <float-alert state="off"></float-alert>
+    <script type="text/html" id="floatAlert_tmpl">
+    <div class="floatAlert none">
+        <div class="floatAlert_box">
+            <span class="floatAlert_close">X</span>
+            <i class="alertEmailIcon"></i>
+            <div class="floatAlert_txt"><a href="[url]" target="_blank">[alertMessage]</a></div>
+        </div>
+    </div>
+    </script>
+    <!--=E floating alert -->
+    </div>
+    <!--=E footer section -->
+        
+    
+        
+    </span>
+            <!-- End JSP from IS Jsmsg - footer  0719  -->
+        <!-- Start JSP from IS Jsmsg - stc incld, hdn q box  0719  -->
+        <div id="IScode">
+    
+    
+    
+    
+        
+    
+    <div class="GS_quotBoxPop none" id="GS_quotBoxPop">
+        <p class="bold">Request for quotations</p>
+        <div class="con clearfix">
+            <div class="img"><img alt="" src="https://s.globalsources.com/gsol/en/clean/images/BLANK.GIF" class="RFQ_headImg"></div>
+            <p><i class="tickIco"></i><span class="ml5">Fast and easy to use</span></p>
+            <p><i class="tickIco"></i><span class="ml5">Receive tailored offers</span></p>
+            <p><i class="tickIco"></i><span class="ml5">Compare quotations</span></p>			 
+            <p class="more"><a target="_blank" href="https://www.globalsources.com/SITE/TRADEMATCH.HTM">Learn more</a></p>
+        </div>
+    </div> </div>
+        <!-- End JSP from IS Jsmsg - stc incld, hdn q box  0719  -->
+</div>
+<!--=E Footer -->
+<!-- <script type="text/javascript" src="https://s.globalsources.com/ST/js/JSMsg_var.js"></script> -->
+<script type="text/javascript" src="https://s.globalsources.com/gsol/en/clean/static/s/JQUERY-PLUGIN.JS"></script>
+<script type="text/javascript" src="https://s.globalsources.com/ST/js/GSOL-Internal-v2.js"></script>
+<script type="text/javascript" src="https://s.globalsources.com/gsol/en/clean/static/s/JQUERY_AUTOCOMPLETE.JS"></script>
+<script type="text/javascript" src="https://s.globalsources.com/gsol/en/clean/static/s/EGSOL_WEB_UI.JS"></script>
+<script type="text/javascript" src="https://s.globalsources.com/gsol/en/clean/static/s/COMMON.JS"></script>
+<!-- page JS -->
+<script type="text/javascript">
+$(function(){
+    var STATIC = {
+        PLAYERFIX: 1,
+    }
+
+    $('.lazy').lazyload({threshold: 150, failure_limit: 999 });
+
+
+    $(".APP_player").on('click', '.playIcon', function(){
+        var player = $(".APP_player");
+        player.find('.preview').addClass("none");
+        player.find(".videobox").removeClass("none");
+        player.find(".video").removeAttr("preload").get(0).play();
+    }).on('click', '.close', function(){
+        var player = $(".APP_player");
+        STATIC.PLAYERFIX = 0;
+        player.removeClass("fixed");
+        player.find(".video").removeAttr("preload").get(0).pause();
+    })
+    
+    if(egsolUI.isMobileDevice()){
+        $('.APP_qr').off('.D').on('click.M', '.qr', function(e){
+            e.stopPropagation();
+            $('.APP_qr').toggleClass('hover');
+            $('body').one("click", function(e){
+                var tar = $(e.target);
+                if (tar && !tar.is('.APP_qr') && $(tar).parents('.APP_qr').length == 0) {
+                    $('.APP_qr').removeClass('hover');
+                }
+            });
+        });
+    }else{
+        $('.APP_qr').off('.M').on('mouseover.D', function(){
+            $(this).addClass('hover');
+            $('.APP_qr').find('.lazy').trigger('appear');
+        }).on('mouseout.M', function(){
+            $(this).removeClass('hover');
+        });
+    }
+
+    $(window).on('scroll', function(){
+        var obj = $('.APP_side');
+        var video = $('.APP_player');
+        var top = $(window).scrollTop();
+        var topS = $('.APP_main').offset().top;
+        if(top>topS){
+            obj.addClass('show');
+            if(STATIC.PLAYERFIX==1){
+                !video.hasClass('fixed') && $('.APP_banner').height($('.APP_banner').height());
+                video.addClass('fixed');
+            }
+        }else{
+            obj.removeClass('show');
+            $('.APP_banner').css('height', '');
+            if(STATIC.PLAYERFIX==1){
+                video.removeClass('fixed');
+            }
+        }
+    })
+});
+</script>
+<!-- START OF SmartSource Data Collector TAG v10.4.23 -->
+<!-- Copyright (c) 2016 Webtrends Inc.  All rights reserved. -->
+<script>
+var dcsid_trackcode = "dcs222s995baa3dif3txj4i1d_8y2f";
+if(window.location.hostname.indexOf("spanish") != -1 || document.URL.indexOf("/ES/") != -1){
+    dcsid_trackcode = "dcs222583e6ly3i1wa4ksg6y4_7v1r";
+}
+else if(window.location.hostname.indexOf("m.globalsources") != -1 || document.URL.indexOf("/M/") != -1){
+    dcsid_trackcode = "dcs222cvue020vgcll34la7kh_2q5u";
+}
+
+window.webtrendsAsyncInit=function(){
+    var dcs=new Webtrends.dcs().init({
+        dcsid: dcsid_trackcode,
+        domain:"statse.webtrendslive.com",
+        timezone:8,
+        i18n:true,
+        offsite:true,
+        download:true,
+        downloadtypes:"xls,doc,pdf,txt,csv,zip,docx,xlsx,rar,gzip",
+        anchor:true,
+        onsitedoms:"globalsources.com",
+        fpcdom:".globalsources.com",
+        plugins:{
+            hm:{src:"//s.webtrends.com/js/webtrends.hm.js"}
+        }
+    }).track();
+};
+
+window.addEventListener("load", function(){
+    var s=document.createElement("script"); s.async=true; s.src="//s.globalsources.com/ST/js/mjs/webtrends.min.js";    
+    var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
+});
+</script>
+<noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//statse.webtrendslive.com/dcs222s995baa3dif3txj4i1d_8y2f/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.4.23&amp;dcssip=www.globalsources.com"/></noscript>
+<!-- END OF SmartSource Data Collector TAG v10.4.23 -->
+</body>
+</html>
