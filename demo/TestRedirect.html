@@ -1,0 +1,13 @@
+<script type="text/javascript">
+       var sUserAgent = navigator.userAgent.toLowerCase();
+       var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+       var bIsAndroid = sUserAgent.match(/android/i) == "android";
+       var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+       if (bIsAndroid) {
+              window.location.href = "https://play.google.com/store/apps/details?id=com.globalsources.globalsources_app";
+       } else if (bIsIphoneOs || bIsIpad) {
+              window.location.href = "https://apps.apple.com/app/apple-store/id952052155?mt=8";
+       } else {
+              window.location.href = "https://www.globalsources.com/SITE/GSOL-MOBILE-APPS.HTM?WT.mc_id=9003016";
+       }
+</script>
