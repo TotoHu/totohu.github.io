@@ -100,9 +100,10 @@ if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|S
 </script>
 <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script>
+var count = 1;
 var clipboard = new Clipboard('#btn2', {
        text: function() {
-       return 'to be or not to be';
+       return 'This is a share thing'+(count++);
        }
 });
 
