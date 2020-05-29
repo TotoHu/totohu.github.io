@@ -13,17 +13,15 @@
 <br />
 <button id="btn">Copy to Clipboard: Original</button>
 <br />
-<button id="btn2">Copy to Clipboard Using clipboard.js</button>
+<button class="btn2" id="btn2">Copy to Clipboard Using clipboard.js</button>
 
 <br />
 <button id="btnShareFirend">Share to friend</button>
 <br />
 <button id="btnWeixinShare">Share to Wexin</button>
 
-<br/>
-ZeroClipBoard:  
-<input id="clipText" type="text" />
-<input id="clip" type="button" data-clipboard-target="clipText" value="一键复制" />
+
+<textarea></textarea>
 
 <script>
 // 使用系统分享发送分享消息 
@@ -98,21 +96,16 @@ if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|S
         }
     }
 </script>
-<script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script>
 var count = 1;
-var clipboard = new Clipboard('#btn2', {
-       text: function() {
-       return 'This is a share thing'+(count++);
-       }
-});
-
-clipboard.on('success', function(e) {
-       console.log(e);
-});
-
-clipboard.on('error', function(e) {
-       console.log(e);
+alert(count);
+new ClipboardJS('#btn2', {
+    text: function(trigger) {
+        return 'hello :'+ (count++);
+    }
 });
 
 </script>
