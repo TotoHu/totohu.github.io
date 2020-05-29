@@ -13,9 +13,9 @@
 // 使用系统分享发送分享消息 
 function shareSystem(){
 	plus.share.sendWithSystem({type:'text',content:'分享内容',href:'http://www.dcloud.io/'}, function(){
-		console.log('成功');
+		alert('成功');
 	}, function(e){
-		console.log('失败：'+JSON.stringify(e));
+		alert('失败：'+JSON.stringify(e));
 	});
 }
 </script>
