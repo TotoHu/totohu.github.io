@@ -93,17 +93,18 @@
 <script type="text/javascript">
 //common fixed elements, usage: <fixtag class="js_fix" fixClass="<the class when fixed>" />
 $('.js_fix').each(function(){
-  var self = $(this), fixCls= self.attr('fixClass') || '', originT = self.offset().top, placeholder = $('<div></div>');
+  var self = $(this), fixCls= self.attr('fixClass') || '', placeholder = $('<div></div>');self.originT = self.offset().top;
   $(window).off('.summit').on('scroll.summit', function(){
-    if( $(this).scrollTop() >= originT){
+    if( $(this).scrollTop() >= self.originT){
       self.addClass(fixCls);
       placeholder.height(self.outerHeight(true)).css('display',self.css('display')).insertAfter(self);
     }else{
       self.removeClass(fixCls);
       placeholder.remove();
+      self.originT = self.offset().top;
     }
   }).on('load.summit resize.summit',function(){
-    originT = self.removeClass(fixCls).offset().top;
+    self.originT = self.removeClass(fixCls).offset().top;
     $(this).trigger('scroll.summit');
   });
 });
