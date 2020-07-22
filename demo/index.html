@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+  <title>Trade Show Invitation</title>
+  <meta name="description" content="Join us and enjoy out show!" />
+  <link rel="stylesheet" href="./css/invitation.css">
+</head>
+<body class="loading">
+<div class="loader">
+  <span class="loaderin ball-spin-fade-loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </span>
+</div>
+<div class="wrap">
+  <header class="head">
+    <img class="img js_val_showimg" alt="" />
+  </header>
+  <div class="sectionInfo">
+    <img class="img js_val_post" alt="" />
+    <p class="txt1">Invitation from</p>
+    <p class="company js_val_company"></p>
+    <!-- <p class="greettit">Hi, Sir/ Madam</p> -->
+    <p class="greettxt js_val_content"></p>
+    <div class="opt js_fix js_isregister" fixClass="fixed" style="display:none">
+      <a class="button js_registerBtn" href="https://www.qa.globalsources.com/trdshw/GeneralManager?action=TSCShortForm&form=4in1&tsid=2809999999999">Register for the Show</a>
+    </div>
+    <p class="txt2">See you at the show:</p>
+    <p class="txt3 js_val_showname"></p>
+    <p class="txt3 js_val_showvenue"></p>
+    <p class="txt3 js_val_showdate"></p>
+    <p class="txt3">Booth Number <strong class="key js_val_booth"></strong></p>
+  </div>
+  <div class="sectionShow js_content">
+    <p class="title">Preview of the Show</p>
+    <ul class="videobox js_contentSub">
+      <li class="item js_val_video">
+        <div class="imgcon">
+          <img class="img" data-src="{{post}}" alt="" />
+          <i class="playerico js_video" data-video="{{url}}"></i>
+        </div>
+        <span class="tit"><span>{{desc}}</span></span>
+      </li>
+    </ul>
+    <ul class="imgbox js_contentSub">
+      <li class="item js_val_img">
+        <div class="imgcon">
+          <img class="img js_image" data-src="{{url}}" alt="" />
+        </div>
+        <span class="tit"><span>{{desc}}</span></span>
+      </li>
+    </ul>
+  </div>
+  <div class="sectionOpt js_ispreview" style="display:none">
+    <a id="inviteBtn" class="optbutton" href="javascript:;">Invite Buyers</a>
+  </div>
+
+  <!-- overlay -->
+  <div class="commonPop js_videoPop">
+    <span class="close js_close"></span>
+    <div class="con">
+      <video class="video" controls="controls" preload="none" controlslist="nofullscreen nodownload" webkit-playsinline="webkit-playsinline" playsinline="playsinline">
+        <source src="https://s.globalsources.com/gsol/en/clean/images/BLANK.GIF" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <div class="commonPop js_imagePop">
+    <span class="close js_close"></span>
+    <div class="con">
+      <img class="img js_img" src="https://s.globalsources.com/gsol/en/clean/images/BLANK.GIF" />
+    </div>
+  </div>
+  <!-- /overlay -->
+
+</div>
+<script type="text/javascript" src="https://s.globalsources.com/gsol/en/clean/static/s/JQUERY-3.0.0.MIN.JS"></script>
+<script type="text/javascript">
+//assume ?inviteID=8&inviteTrackID=6&source=s_app_wechat_1308888
+var Page = {
+  mapping: {
+    'js_val_post':'postimg',
+    'js_val_company':'orgName',
+    'js_val_content':'inviteContent',
+    'js_val_showimg': 'tsCode|handleShow',
+    'js_val_showname':'tsName',
+    'js_val_showvenue':'tsVenue',
+    'js_val_showdate':'tsDuration',
+    'js_val_booth':'boothNumber',
+    'js_val_video':'videos|handleObject',
+    'js_val_img':'images|handleObject',
+  },
+  getUrlParameter: function(param) {
+			var value = location.search.match(new RegExp("[\?\&]" + param + "=([^\&]*)(\&?)", "i"));
+			return value ? value[1] : '';
+  },
+  initParam: function () {
+    Page.inviteID = Page.getUrlParameter('inviteID');
+    Page.param = (function(){
+      var ua = navigator.userAgent;
+      var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+      var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+      var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+      var iphone = !ipad && ua.match(/(iPhone\sOS|iOS)\s([\d_]+)/);
+      var isPreview = ua.toLowerCase().match(/gssupplier/i) != null;//!(Page.getUrlParameter('inviteID')!=''&&Page.getUrlParameter('inviteTrackID')!=''&&Page.getUrlParameter('source')!='');//(typeof(injs)=='object'&& typeof(injs.nativeShareInvite)=='function')||(typeof(nativeShareInvite)=='function');
+      return {
+        isPreview: isPreview,
+        isIos: ipad || iphone || ipod,
+        isAndroid: android
+      };
+    })();
+  },
+  templateGenerate: function(template, data, allowEmpty, chats){
+    var chats = chats || ['\\$\\{', '\\}'];
+    var regExp = [chats[0], '([_\\w]+[\\w\\d_]?)', chats[1]].join('');
+    regExp = new RegExp(regExp, 'g');
+    return template.replace(regExp, function (s, s1) {
+      if (data[s1] != null && data[s1] != undefined) {
+          return data[s1];
+      } else {
+          return allowEmpty ? '' : s;
+      }
+    });
+  },
+  processData: function(data){
+    var temp = {};
+    $.extend( true, temp, data);
+    temp.postimg = data.images[0].imageUrl;
+    switch (data.tsName) {
+      case 'Global Sources Mobile Electronics Show':
+        temp.tsCode = 'ME';
+        break;
+      case 'Global Sources Consumer Electronics Show':
+        temp.tsCode = 'CE';
+        break;
+      case 'Global Sources Home & Kitchen Show':
+        temp.tsCode = 'HK';
+        break;
+      case 'Global Sources Lifestyle Show':
+        temp.tsCode = 'LS';
+        break;
+      case 'Global Sources Fashion Show':
+        temp.tsCode = 'FA';
+        break;
+      default:
+        temp.tsCode = 'ME';
+    }
+    temp.tsVenue = data.tsVenue+', '+data.tsLocation;
+    temp.tsDuration = (data.tsPeriod.split('-')[0]+' '+new Date(data.tsStartDate).getDate()+'-'+new Date(data.tsEndDate).getDate()+', '+new Date(data.tsStartDate).getFullYear()).replace(/ (\d+\-?\d+),/,' <strong class="key">$1</strong>,');
+    temp.videos = [];
+    if(typeof data.videoUrl !='undefined' && data.videoUrl && data.videoUrl!=''){
+      temp.videos[0] = {};
+      temp.videos[0].url = data.videoUrl;
+      temp.videos[0].post = typeof data.videoCoverUrl=='string'&&data.videoCoverUrl!=''?data.videoCoverUrl:'';
+      temp.videos[0].desc = typeof data.videoDesc=='string'&&data.videoDesc!=''?data.videoDesc:'';
+    }
+    temp.images = [];
+    if(data.images.length > 1){
+      for(var i = 0;i<data.images.length;i++){
+        var j = data.images[i];
+        if(!j.isCover){
+          var k = temp.images.length;
+          temp.images[k] = {};
+          temp.images[k].url = j.imageUrl;
+          temp.images[k].desc = j.imageDesc;
+        }
+      }
+    }
+    return temp;
+  },
+  fillData: function(data, callback){
+    //special handler
+    var handleObject = function( obj, dataobj ){
+      if(dataobj.constructor == Object){
+        obj.replaceWith(Page.templateGenerate(obj.get(0).outerHTML,dataobj,false,['\\{\\{', '\\}\\}']));
+      }else if(dataobj.constructor == Array){
+        var str = '';
+        for(var i in dataobj){
+          str += Page.templateGenerate(obj.get(0).outerHTML,dataobj[i],false,['\\{\\{', '\\}\\}']);
+        }
+        var newobj = $(str);
+        obj.replaceWith(newobj);
+        newobj.find('[data-src]').attr('src',function(){return $(this).attr('data-src')}).end().find('.tit:has(span:empty)').remove();
+      }else{
+        obj.addClass('hidden');
+      }
+    };
+
+    var handleShow = function(obj, show){
+      obj.attr('src', function(){
+        return 'images/invitation_head_'+show+'@2x.jpg';
+      })
+    }
+
+    //update corresponding value
+    for(var jskey in Page.mapping){
+      var key = Page.mapping[jskey], val = key.split('|')[0];
+      if(val.indexOf('.')!=-1){
+        val = val.split('.');
+        val = data[val[0]][val[1]]
+      }else{
+        val = data[val]
+      }
+      if(key.indexOf('|')!=-1){
+        var funcname = key.split('|')[1];
+        var func = eval(funcname);
+        (typeof func =='function') && func($('.'+jskey), val);
+      }else{
+        var target = $('.'+jskey);
+        if(target.is('img')){target.attr('src', val)}
+        else{target.html(val)}
+      }
+    }
+
+    if(typeof callback=='function'){
+      callback();
+    }
+  },
+  ajaxData: function(callback){
+    if( typeof Page.failtime =='undefined'){Page.failtime = 0;}
+    if(++Page.failtime > 10)return;
+    $.ajax({
+      //url:'/service/supplier/v9/invitation/detailbyinviteid',
+      url: './api/content.json',
+      data:{inviteId: Page.inviteID},
+      dataType: 'json',
+      success: function(data){
+        if(data.code=='0' || data.code==0){
+          data = Page.processData(data.data);
+          Page.fillData(data, callback);
+          $('body').removeClass('loading');
+        }else{
+          Page.ajaxData(callback);
+        }
+      },
+      error: function(){
+        Page.ajaxData(callback);
+      }
+    })
+  },
+  bindEffect: function(){
+    
+    //Show or Hide some content
+    if($.trim($('.js_val_booth').html())==''){
+      $('.js_val_booth').parent().remove();
+    }
+
+    var isEmpty = true;
+    $('.js_contentSub').each(function(){
+      if($(this).children().length != 0){
+        isEmpty = false;
+      }
+    })
+    if(isEmpty){
+      $('.js_content').addClass('empty');
+    }
+
+
+    if($('.js_registerBtn').length){
+      $('.js_registerBtn').attr('href', function(){
+        var source = Page.getUrlParameter('source');
+        if(source!=''){
+          return 'https://www.qa.globalsources.com/trdshw/GeneralManager?action=TSCShortForm&form=4in1&tsid=2809999999999&source='+source;
+        }
+      });
+
+      //common fixed elements, usage: <fixtag class="js_fix" fixClass="<the class when fixed>" />
+      $('.js_fix').each(function(){
+        var self = $(this), fixCls= self.attr('fixClass') || '', placeholder = $('<div></div>');self.originT = self.offset().top;
+        $(window).off('.summit').on('scroll.summit', function(){
+          if( $(this).scrollTop() >= self.originT){
+            self.addClass(fixCls);
+            placeholder.height(self.outerHeight(true)).css('display',self.css('display')).insertAfter(self);
+          }else{
+            self.removeClass(fixCls);
+            placeholder.remove();
+            self.originT = self.offset().top;
+          }
+        }).on('load.summit resize.summit',function(){
+          self.originT = self.removeClass(fixCls).offset().top;
+          $(this).trigger('scroll.summit');
+        });
+      });
+    }
+    //video effect
+    $('.js_video').on('click', function(){
+      var pop = $('.js_videoPop').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
+      if(video.find('source').attr('src').indexOf('.mp4')==-1){
+        video.removeAttr('preload').find('source').attr('src', url);
+        video.get(0).load();
+      }
+      pop.find('.js_close').one('click', function(){
+        pop.removeClass('show');
+        video.get(0).pause();
+      })
+      //video.get(0).load();
+      video.get(0).play();
+    })
+    //image effect
+    $('.js_image').on('click', function(){
+      var pop = $('.js_imagePop').addClass('show'), video = pop.find('video');
+      pop.find('.js_close').one('click', function(){
+        pop.removeClass('show');
+      })
+      var url = $(this).attr('src');
+      pop.find('.js_img').attr('src', url);
+    })
+    
+    //extra tracking: no need response or checking whether it's success
+    var trackid = Page.getUrlParameter('inviteTrackID');
+    if(trackid!=''){
+      Page.failtime = 0;
+      var sendTrack = function(trackid){
+        if(++Page.failtime > 10)return;
+        $.ajax({
+          url: '/service/supplier/v9/invitation/click',
+          data:{inviteTrackId: trackid},
+          dataType: 'json',
+          success: function(data){
+            if(data.code!='0' && data.code!=0){
+              sendTrack(trackid);
+            }
+          },
+          error: function(){
+            sendTrack(trackid);
+          }
+        })
+      };
+      sendTrack(trackid);
+    }
+
+    if($('#inviteBtn').length){
+      $('#inviteBtn').on('click', function(){
+        if(Page.param.isAndroid){
+          injs.nativeShareInvite(location.origin+location.pathname , Page.inviteID, 'GlobalSources Trade Show Invitation', 'Join us and enjoy our show!');
+        }else if(Page.param.isIos){
+          window.webkit.messageHandlers.nativeShareInvite.postMessage(location.origin+location.pathname , Page.inviteID, 'GlobalSources Trade Show Invitation', 'Join us and enjoy our show!');
+        }else{
+          alert('Device not detected!')
+        }
+      })
+    }
+  },
+  init: function(){
+    //?inviteID=1&inviteTrackID=6&source=s_app_wechat_1
+    //?inviteID=2&inviteTrackID=8&source=s_app_wechat_2
+    Page.initParam();
+    if(Page.param.isPreview){
+      $('.js_isregister').remove();
+      $('.js_ispreview').css('display', '');
+    }else{
+      $('.js_ispreview').remove();
+      $('.js_isregister').css('display', '');
+    }
+    Page.ajaxData(Page.bindEffect);
+  }
+};
+Page.init();
+</script>
+</body>
+</html>

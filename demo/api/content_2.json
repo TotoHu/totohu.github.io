@@ -1,0 +1,28 @@
+{
+  "postimg":"images/temp3.jpg",
+  "companyname": "Hello Hello Company Ltd.",
+  "invitecontent": "Here display the contenet that supplier typein!",
+  "show": {
+    "shortCode": "FA",
+    "name": "Global Sources Fashion Show",
+    "venue":"AsiaWorld-Expo, Hong Kong",
+    "duration": "April 18-21, 2020",
+    "booth":"2B88"
+  },
+  "videos": [
+    {
+    "post": "https://p.globalsources.com/IMAGES/PDT/S1176909746/Fashion-Women-Straw-Bags.jpg",
+    "url": "http://b.globalsources.com/video/2/P8825472973_624252.mp4",
+    "desc": "Here display the uploaded video description, max 60 characters"
+    }
+  ],
+  "images": [
+    {
+      "url": "images/temp1.jpg",
+      "desc": "Here is the image description, max. 30"
+    }
+  ]
+
+ 
+
+}

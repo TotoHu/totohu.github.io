@@ -1,0 +1,40 @@
+{
+  "postimg":"images/temp2.jpg",
+  "companyname": "Xiamen Breitex Imp. & Exp. Co. Ltd",
+  "invitecontent": "We will be exhibiting at Global Sources Consumer Electronics Show on 11-14 April 2019. Join us in Hong Kong!",
+  "show": {
+    "shortCode": "ME",
+    "name": "Global Sources Mobile Electronics Show",
+    "venue":"AsiaWorld-Expo, Hong Kong",
+    "duration": "April 11-14, 2020",
+    "booth":"3E08"
+  },
+  "videos": [
+    {
+    "post": "https://p.globalsources.com/IMAGES/PDT/S1170458739/PP.jpg",
+    "url": "http://b.globalsources.com/video/3/P8847955344_640253.mp4",
+    "desc": "Here display the uploaded video description, max 60 characters"
+    }
+  ],
+  "images": [
+    {
+      "url": "images/temp1.jpg",
+      "desc": "Here is the image description, max. 30"
+    },
+    {
+      "url": "https://p.globalsources.com/IMAGES/PDT/B1167892890/Wireless-Charging-Station-qc3.0-multi-port.jpg",
+      "desc": "Here is the image description, max. 30"
+    },
+    {
+      "url": "https://s.globalsources.com/ST/i/G1_MedicalSupply_Banner-V2_desktop.JPG",
+      "desc": "Here is the image description, max. 30"
+    },
+    {
+      "url": "images/temp1.jpg",
+      "desc": ""
+    }
+  ]
+
+ 
+
+}
