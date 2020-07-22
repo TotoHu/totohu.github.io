@@ -76,7 +76,7 @@ body{background: #f00;}
 .commonPop .close{display: inline-block;position: absolute;width: 41px;height: 41px;top:8px;right:8px;background: rgba(0,0,0,.2);border-radius: 50%;cursor: pointer;z-index: 9999;}
 .commonPop .close::before,.commonPop .close::after{content:'';position: absolute;display: inline-block;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform: rotate(45deg);background-color: #fff;left:7px;top:19px;width:27px;height: 3px;/* box-shadow: 2px 2px 5px #000; */}
 .commonPop .close::before{left:19px;top:7px;width:3px;height:27px; }
-/* .commonPop .video{max-width: 100%;max-height: 100%;width: auto;height: auto;display: block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;} */
+/* .commonPop .video{max-width: 100%;max-height: 100%;width: auto;height: auto;display: block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;} TODO*/
 .commonPop .video{max-width: 100%;max-height: 100%;width: auto;height: auto;display: block;position: absolute;top: 0;right: 0;}
 .commonPop video::-webkit-media-controls-fullscreen-button {display: none;}
 .commonPop .img{max-width: 100%;max-height: 100%;width: auto;height: auto;display: block;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;}
