@@ -64,7 +64,6 @@
   </div>
 
   <!-- overlay -->
-  <div class="commonPopMask js_popMask"></div>
   <div class="commonPop js_videoPop">
     <span class="close js_close"></span>
     <div class="con">
@@ -247,6 +246,16 @@ var Page = {
       }
     })
   },
+  lock: function(){
+    Page.scrollVal = $("body").scrollTop() || $("html").scrollTop();
+    $("html").css('overflow', 'hidden');
+    $("body").css({'position':'fixed', 'width':'100%', 'top':'-'+Page.scrollVal+'px'});
+  },
+  unlock: function(){
+    $("html").css('overflow', '');
+    $("body").css({'position':'', 'width':'','top':''});
+    $("html,body").scrollTop(Page.scrollVal);
+  },
   bindEffect: function(){
     
     //Show or Hide some content
@@ -297,14 +306,14 @@ var Page = {
     }
     //video effect
     $('.js_video').on('click', function(){
-      $("html,body").addClass('bodyfreeze');
-      var pop = $('.js_videoPop, .js_popMask').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
+      Page.lock();
+      var pop = $('.js_videoPop').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
       if(video.find('source').attr('src').indexOf('.mp4')==-1){
         video.removeAttr('preload').find('source').attr('src', url);
         video.get(0).load();
       }
       pop.find('.js_close').one('click', function(){
-        $("html,body").removeClass('bodyfreeze');
+        Page.unlock();
         pop.removeClass('show');
         video.get(0).pause();
       })
@@ -313,10 +322,10 @@ var Page = {
     })
     //image effect
     $('.js_image').on('click', function(){
-      $("html,body").addClass('bodyfreeze');
-      var pop = $('.js_imagePop, .js_popMask').addClass('show'), video = pop.find('video');
+      Page.lock();
+      var pop = $('.js_imagePop').addClass('show'), video = pop.find('video');
       pop.find('.js_close').one('click', function(){
-        $("html,body").removeClass('bodyfreeze');
+        Page.unlock();
         pop.removeClass('show');
       })
       var url = $(this).attr('src');
