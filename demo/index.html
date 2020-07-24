@@ -254,7 +254,7 @@ var Page = {
   unlock: function(){
     $("html").css('overflow', '');
     $("body").css({'position':'', 'width':'','top':''});
-    $("html,body").scrollTop(Page.scrollVal);
+    $(window).trigger('calculate').scrollTop(Page.scrollVal);
   },
   bindEffect: function(){
     
@@ -285,15 +285,23 @@ var Page = {
 
       //common fixed elements, usage: <fixtag class="js_fix" fixClass="<the class when fixed>" />
       $('.js_fix').each(function(){
-        var self = $(this), fixCls= self.attr('fixClass') || '', placeholder = $('<div></div>');self.originT = self.offset().top;
+        var self = $(this), fixCls= self.attr('fixClass') || '', placeholder = $('<div></div>');self.originT = self.offset().top, isCurrent = false, isFly = false;
         $(window).off('.summit').on('scroll.summit', function(){
           if( $(this).scrollTop() >= self.originT){
-            self.addClass(fixCls);
-            placeholder.height(self.outerHeight(true)).css('display',self.css('display')).insertAfter(self);
+            isFly = true;
           }else{
-            self.removeClass(fixCls);
-            placeholder.remove();
-            self.originT = self.offset().top;
+            isFly = false;
+          }
+          if(isFly != isCurrent){
+            isCurrent = isFly;
+            if(isCurrent){
+              self.addClass(fixCls);
+              placeholder.height(self.outerHeight(true)).css('display',self.css('display')).insertAfter(self);
+            }else{
+              self.removeClass(fixCls);
+              placeholder.remove();
+              self.originT = self.offset().top;
+            }
           }
         }).on('load.summit resize.summit calculate',function(){
           self.originT = self.removeClass(fixCls).offset().top;
