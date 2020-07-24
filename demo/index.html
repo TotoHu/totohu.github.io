@@ -64,6 +64,7 @@
   </div>
 
   <!-- overlay -->
+  <div class="commonPopMask js_popMask"></div>
   <div class="commonPop js_videoPop">
     <span class="close js_close"></span>
     <div class="con">
@@ -297,7 +298,7 @@ var Page = {
     //video effect
     $('.js_video').on('click', function(){
       $("html,body").addClass('bodyfreeze');
-      var pop = $('.js_videoPop').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
+      var pop = $('.js_videoPop, .js_popMask').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
       if(video.find('source').attr('src').indexOf('.mp4')==-1){
         video.removeAttr('preload').find('source').attr('src', url);
         video.get(0).load();
@@ -313,7 +314,7 @@ var Page = {
     //image effect
     $('.js_image').on('click', function(){
       $("html,body").addClass('bodyfreeze');
-      var pop = $('.js_imagePop').addClass('show'), video = pop.find('video');
+      var pop = $('.js_imagePop, .js_popMask').addClass('show'), video = pop.find('video');
       pop.find('.js_close').one('click', function(){
         $("html,body").removeClass('bodyfreeze');
         pop.removeClass('show');
