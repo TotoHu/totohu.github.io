@@ -250,6 +250,7 @@ var Page = {
     Page.scrollVal = $("body").scrollTop() || $("html").scrollTop();
     $("html").css('overflow', 'hidden');
     $("body").css({'position':'fixed', 'width':'100%', 'top':'-'+Page.scrollVal+'px'});
+    //$('.js_registerBtn').
   },
   unlock: function(){
     $("html").css('overflow', '');
@@ -295,8 +296,8 @@ var Page = {
           if(isFly != isCurrent){
             isCurrent = isFly;
             if(isCurrent){
-              self.addClass(fixCls);
               placeholder.height(self.outerHeight(true)).css('display',self.css('display')).insertAfter(self);
+              self.addClass(fixCls);
             }else{
               self.removeClass(fixCls);
               placeholder.remove();
@@ -304,7 +305,9 @@ var Page = {
             }
           }
         }).on('load.summit resize.summit calculate',function(){
+          var fix = self.hasClass(fixCls)? true : false;
           self.originT = self.removeClass(fixCls).offset().top;
+          fix && self.addClass(fixCls);
           $(this).trigger('scroll.summit');
         })
         $('img').on('load', function(){
