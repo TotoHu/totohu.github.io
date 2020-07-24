@@ -296,14 +296,14 @@ var Page = {
     }
     //video effect
     $('.js_video').on('click', function(){
-      $("body").addClass('bodyfreeze');
+      $("html,body").addClass('bodyfreeze');
       var pop = $('.js_videoPop').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
       if(video.find('source').attr('src').indexOf('.mp4')==-1){
         video.removeAttr('preload').find('source').attr('src', url);
         video.get(0).load();
       }
       pop.find('.js_close').one('click', function(){
-        $("body").removeClass('bodyfreeze');
+        $("html,body").removeClass('bodyfreeze');
         pop.removeClass('show');
         video.get(0).pause();
       })
@@ -312,10 +312,10 @@ var Page = {
     })
     //image effect
     $('.js_image').on('click', function(){
-      $("body").addClass('bodyfreeze');
+      $("html,body").addClass('bodyfreeze');
       var pop = $('.js_imagePop').addClass('show'), video = pop.find('video');
       pop.find('.js_close').one('click', function(){
-        $("body").removeClass('bodyfreeze');
+        $("html,body").removeClass('bodyfreeze');
         pop.removeClass('show');
       })
       var url = $(this).attr('src');
