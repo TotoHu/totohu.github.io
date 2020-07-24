@@ -169,8 +169,8 @@ var Page = {
         if(!j.isCover){
           var k = temp.images.length;
           temp.images[k] = {};
-          temp.images[k].url = j.imageUrl;
-          temp.images[k].desc = j.imageDesc;
+          temp.images[k].url = typeof j.imageUrl=='string'&&j.imageUrl!=''?j.imageUrl:'';
+          temp.images[k].desc = typeof j.imageDesc=='string'&&j.imageDesc!=''?j.imageDesc:'';
         }
       }
     }
@@ -188,7 +188,8 @@ var Page = {
         }
         var newobj = $(str);
         obj.replaceWith(newobj);
-        newobj.find('[data-src]').attr('src',function(){return $(this).attr('data-src')}).end().find('.tit:has(span:empty)').remove();
+        if(newobj.find('[data-src]').attr('data-src')){newobj.find('[data-src]').attr('src',function(){return $(this).attr('data-src')})}
+        newobj.find('.tit:has(span:empty)').remove();
       }else{
         obj.addClass('hidden');
       }
@@ -196,7 +197,7 @@ var Page = {
 
     var handleShow = function(obj, show){
       obj.attr('src', function(){
-        return 'images/invitation_head_'+show+'@2x.jpg';
+        return './images/invitation_head_'+show+'@2x.jpg';
       })
     }
 
@@ -236,7 +237,6 @@ var Page = {
         if(data.code=='0' || data.code==0){
           data = Page.processData(data.data);
           Page.fillData(data, callback);
-          $('body').removeClass('loading');
         }else{
           Page.ajaxData(callback);
         }
@@ -262,6 +262,7 @@ var Page = {
     if(isEmpty){
       $('.js_content').addClass('empty');
     }
+    $('body').removeClass('loading');
 
 
     if($('.js_registerBtn').length){
@@ -284,20 +285,25 @@ var Page = {
             placeholder.remove();
             self.originT = self.offset().top;
           }
-        }).on('load.summit resize.summit',function(){
+        }).on('load.summit resize.summit calculate',function(){
           self.originT = self.removeClass(fixCls).offset().top;
           $(this).trigger('scroll.summit');
+        })
+        $('img').on('load', function(){
+          $(window).trigger('calculate');
         });
       });
     }
     //video effect
     $('.js_video').on('click', function(){
+      $("body").addClass('bodyfreeze');
       var pop = $('.js_videoPop').addClass('show'), video = pop.find('video'), url=$(this).attr('data-video');
       if(video.find('source').attr('src').indexOf('.mp4')==-1){
         video.removeAttr('preload').find('source').attr('src', url);
         video.get(0).load();
       }
       pop.find('.js_close').one('click', function(){
+        $("body").removeClass('bodyfreeze');
         pop.removeClass('show');
         video.get(0).pause();
       })
@@ -306,8 +312,10 @@ var Page = {
     })
     //image effect
     $('.js_image').on('click', function(){
+      $("body").addClass('bodyfreeze');
       var pop = $('.js_imagePop').addClass('show'), video = pop.find('video');
       pop.find('.js_close').one('click', function(){
+        $("body").removeClass('bodyfreeze');
         pop.removeClass('show');
       })
       var url = $(this).attr('src');
@@ -342,7 +350,8 @@ var Page = {
         if(Page.param.isAndroid){
           injs.nativeShareInvite(location.origin+location.pathname , Page.inviteID, 'GlobalSources Trade Show Invitation', 'Join us and enjoy our show!');
         }else if(Page.param.isIos){
-          window.webkit.messageHandlers.nativeShareInvite.postMessage(location.origin+location.pathname , Page.inviteID, 'GlobalSources Trade Show Invitation', 'Join us and enjoy our show!');
+          var obj = {"path":location.origin+location.pathname,"id":Page.inviteID,"title":"GlobalSources Trade Show Invitation","desc": "Join us and enjoy our show!"};
+          window.webkit.messageHandlers.nativeShareInvite.postMessage(obj);
         }else{
           alert('Device not detected!')
         }
