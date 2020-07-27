@@ -5,6 +5,10 @@
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
   <title>Trade Show Invitation</title>
   <meta name="description" content="Join us and enjoy out show!" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Global Sources Trade Show Invitation" />
+  <meta property="og:description" content="Join us and enjoy out show!" />
+  <meta property="og:image"content="https://s.globalsources.com/ST/i/TOP20-PRODUCTS-GH.JPG" />
   <link rel="stylesheet" href="./css/invitation.css">
 </head>
 <body class="loading">
@@ -153,6 +157,7 @@ var Page = {
       default:
         temp.tsCode = 'ME';
     }
+    temp.inviteContent = data.inviteContent.replace(/__:__/g, '<br />');
     temp.tsVenue = data.tsVenue+', '+data.tsLocation;
     temp.tsDuration = (data.tsPeriod.split('-')[0]+' '+new Date(data.tsStartDate).getDate()+'-'+new Date(data.tsEndDate).getDate()+', '+new Date(data.tsStartDate).getFullYear()).replace(/ (\d+\-?\d+),/,' <strong class="key">$1</strong>,');
     temp.videos = [];
@@ -369,9 +374,9 @@ var Page = {
     if($('#inviteBtn').length){
       $('#inviteBtn').on('click', function(){
         if(Page.param.isAndroid){
-          injs.nativeShareInvite(location.origin+location.pathname , Page.inviteID, 'GlobalSources Trade Show Invitation', 'Join us and enjoy our show!');
+          injs.nativeShareInvite(location.origin+location.pathname , Page.inviteID, 'Global Sources Trade Show Invitation', 'Join us and enjoy our show!');
         }else if(Page.param.isIos){
-          var obj = {"path":location.origin+location.pathname,"id":Page.inviteID,"title":"GlobalSources Trade Show Invitation","desc": "Join us and enjoy our show!"};
+          var obj = {"path":location.origin+location.pathname,"id":Page.inviteID,"title":"Global Sources Trade Show Invitation","desc": "Join us and enjoy our show!"};
           window.webkit.messageHandlers.nativeShareInvite.postMessage(obj);
         }else{
           alert('Device not detected!')
